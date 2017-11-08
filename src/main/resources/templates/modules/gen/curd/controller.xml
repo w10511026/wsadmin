@@ -84,6 +84,34 @@ public class ${ClassName}Controller extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
 	}
 
+	@RequiresPermissions("${permissionPrefix}:view")
+	@RequestMapping(value = "export", method= RequestMethod.POST)
+	public String exportFile(${ClassName} ${className}, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			String fileName = "${functionNameSimple}"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+			Page<${ClassName}> page = ${className}Service.findPage(new Page<${ClassName}>(request, response, -1), ${className});
+			new ExportExcel("${functionNameSimple}", ${ClassName}.class).setDataList(page.getList()).write(response, fileName).dispose();
+			return null;
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出${functionNameSimple}失败！失败信息："+e.getMessage());
+		}
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
+	}
+
+	@RequiresPermissions("${permissionPrefix}:view")
+	@RequestMapping(value = "import/template")
+	public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			String fileName = "${functionNameSimple}导入模板.xlsx";
+			List<${ClassName}> list = Lists.newArrayList();
+			list.add(initData());
+			new ExportExcel("${functionNameSimple}", ${ClassName}.class, 2).setDataList(list).write(response, fileName).dispose();
+			return null;
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "${functionNameSimple}导入模板下载失败！失败信息："+e.getMessage());
+		}
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
+	}
 }]]>
 	</content>
 </template>

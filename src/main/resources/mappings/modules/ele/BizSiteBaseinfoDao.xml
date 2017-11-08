@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ele.dao.BizSiteBaseinfoDao">
+    
+	<sql id="bizSiteBaseinfoColumns">
+		a.id AS "id",
+		a.sidistrict AS "sidistrict",
+		a.sisitenum AS "sisitenum",
+		a.sisitename AS "sisitename",
+		a.sipropertyunit AS "sipropertyunit",
+		a.siroomstyle AS "siroomstyle",
+		a.siretain AS "siretain",
+		a.sicmq AS "sicmq",
+		a.sictq AS "sictq",
+		a.sicuq AS "sicuq",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="bizSiteBaseinfoJoins">
+	</sql>
+    
+	<select id="get" resultType="BizSiteBaseinfo">
+		SELECT 
+			<include refid="bizSiteBaseinfoColumns"/>
+		FROM biz_site_baseinfo a
+		<include refid="bizSiteBaseinfoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BizSiteBaseinfo">
+		SELECT 
+			<include refid="bizSiteBaseinfoColumns"/>
+		FROM biz_site_baseinfo a
+		<include refid="bizSiteBaseinfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="sidistrict != null and sidistrict != ''">
+				AND a.sidistrict = #{sidistrict}
+			</if>
+			<if test="sisitenum != null and sisitenum != ''">
+				AND a.sisitenum = #{sisitenum}
+			</if>
+			<if test="sisitename != null and sisitename != ''">
+				AND a.sisitename = #{sisitename}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BizSiteBaseinfo">
+		SELECT 
+			<include refid="bizSiteBaseinfoColumns"/>
+		FROM biz_site_baseinfo a
+		<include refid="bizSiteBaseinfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO biz_site_baseinfo(
+			id,
+			sidistrict,
+			sisitenum,
+			sisitename,
+			sipropertyunit,
+			siroomstyle,
+			siretain,
+			sicmq,
+			sictq,
+			sicuq,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			del_flag
+		) VALUES (
+			#{id},
+			#{sidistrict},
+			#{sisitenum},
+			#{sisitename},
+			#{sipropertyunit},
+			#{siroomstyle},
+			#{siretain},
+			#{sicmq},
+			#{sictq},
+			#{sicuq},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE biz_site_baseinfo SET 	
+			sidistrict = #{sidistrict},
+			sisitenum = #{sisitenum},
+			sisitename = #{sisitename},
+			sipropertyunit = #{sipropertyunit},
+			siroomstyle = #{siroomstyle},
+			siretain = #{siretain},
+			sicmq = #{sicmq},
+			sictq = #{sictq},
+			sicuq = #{sicuq},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE biz_site_baseinfo SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

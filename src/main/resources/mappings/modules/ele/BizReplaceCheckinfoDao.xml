@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ele.dao.BizReplaceCheckinfoDao">
+    
+	<sql id="bizReplaceCheckinfoColumns">
+		a.id AS "id",
+		a.inspsitenum AS "inspsitenum",
+		a.inspdate AS "inspdate",
+		a.inspdisplay AS "inspdisplay",
+		a.inspcmq AS "inspcmq",
+		a.inspctq AS "inspctq",
+		a.inspcuq AS "inspcuq",
+		a.insppeople AS "insppeople",
+		a.inspremarks AS "inspremarks",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="bizReplaceCheckinfoJoins">
+	</sql>
+    
+	<select id="get" resultType="BizReplaceCheckinfo">
+		SELECT 
+			<include refid="bizReplaceCheckinfoColumns"/>
+		FROM biz_replace_checkinfo a
+		<include refid="bizReplaceCheckinfoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BizReplaceCheckinfo">
+		SELECT 
+			<include refid="bizReplaceCheckinfoColumns"/>
+		FROM biz_replace_checkinfo a
+		<include refid="bizReplaceCheckinfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="inspsitenum != null and inspsitenum != ''">
+				AND a.inspsitenum = #{inspsitenum}
+			</if>
+			<if test="beginInspdate != null and endInspdate != null and beginInspdate != '' and endInspdate != ''">
+				AND a.inspdate BETWEEN #{beginInspdate} AND #{endInspdate}
+			</if>
+			<if test="insppeople != null and insppeople != ''">
+				AND a.insppeople = #{insppeople}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BizReplaceCheckinfo">
+		SELECT 
+			<include refid="bizReplaceCheckinfoColumns"/>
+		FROM biz_replace_checkinfo a
+		<include refid="bizReplaceCheckinfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO biz_replace_checkinfo(
+			id,
+			inspsitenum,
+			inspdate,
+			inspdisplay,
+			inspcmq,
+			inspctq,
+			inspcuq,
+			insppeople,
+			inspremarks,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			del_flag
+		) VALUES (
+			#{id},
+			#{inspsitenum},
+			#{inspdate},
+			#{inspdisplay},
+			#{inspcmq},
+			#{inspctq},
+			#{inspcuq},
+			#{insppeople},
+			#{inspremarks},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE biz_replace_checkinfo SET 	
+			inspsitenum = #{inspsitenum},
+			inspdate = #{inspdate},
+			inspdisplay = #{inspdisplay},
+			inspcmq = #{inspcmq},
+			inspctq = #{inspctq},
+			inspcuq = #{inspcuq},
+			insppeople = #{insppeople},
+			inspremarks = #{inspremarks},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE biz_replace_checkinfo SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

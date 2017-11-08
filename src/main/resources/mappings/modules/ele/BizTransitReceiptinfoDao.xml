@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ele.dao.BizTransitReceiptinfoDao">
+    
+	<sql id="bizTransitReceiptinfoColumns">
+		a.id AS "id",
+		a.tcoperator AS "tcoperator",
+		a.tcaccnum AS "tcaccnum",
+		a.tcsitenum AS "tcsitenum",
+		a.tcpaydate AS "tcpaydate",
+		a.tcpredate AS "tcpredate",
+		a.tccurdate AS "tccurdate",
+		a.tcpredisplay AS "tcpredisplay",
+		a.tccurdisplay AS "tccurdisplay",
+		a.tcprestartdisplay AS "tcprestartdisplay",
+		a.tcpreenddisplay AS "tcpreenddisplay",
+		a.tcrate AS "tcrate",
+		a.tcloss AS "tcloss",
+		a.tctotalq AS "tctotalq",
+		a.tcpriceq AS "tcpriceq",
+		a.tcparc AS "tcparc",
+		a.tcpartype AS "tcpartype",
+		a.tcpartypet AS "tcpartypet",
+		a.tctaxfactor AS "tctaxfactor",
+		a.tccmq AS "tccmq",
+		a.tcctq AS "tcctq",
+		a.tccuq AS "tccuq",
+		a.tctotalc AS "tctotalc",
+		a.tcpue AS "tcpue",
+		a.tccheck AS "tccheck",
+		a.tcc AS "tcc",
+		a.tcapportchange AS "tcapportchange",
+		a.tcremarks AS "tcremarks",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="bizTransitReceiptinfoJoins">
+	</sql>
+    
+	<select id="get" resultType="BizTransitReceiptinfo">
+		SELECT 
+			<include refid="bizTransitReceiptinfoColumns"/>
+		FROM biz_transit_receiptinfo a
+		<include refid="bizTransitReceiptinfoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BizTransitReceiptinfo">
+		SELECT 
+			<include refid="bizTransitReceiptinfoColumns"/>
+		FROM biz_transit_receiptinfo a
+		<include refid="bizTransitReceiptinfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="tcoperator != null and tcoperator != ''">
+				AND a.tcoperator = #{tcoperator}
+			</if>
+			<if test="tcaccnum != null and tcaccnum != ''">
+				AND a.tcaccnum = #{tcaccnum}
+			</if>
+			<if test="tcsitenum != null and tcsitenum != ''">
+				AND a.tcsitenum = #{tcsitenum}
+			</if>
+			<if test="tcpaydate != null and tcpaydate != ''">
+				AND a.tcpaydate = #{tcpaydate}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BizTransitReceiptinfo">
+		SELECT 
+			<include refid="bizTransitReceiptinfoColumns"/>
+		FROM biz_transit_receiptinfo a
+		<include refid="bizTransitReceiptinfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO biz_transit_receiptinfo(
+			id,
+			tcoperator,
+			tcaccnum,
+			tcsitenum,
+			tcpaydate,
+			tcpredate,
+			tccurdate,
+			tcpredisplay,
+			tccurdisplay,
+			tcprestartdisplay,
+			tcpreenddisplay,
+			tcrate,
+			tcloss,
+			tctotalq,
+			tcpriceq,
+			tcparc,
+			tcpartype,
+			tcpartypet,
+			tctaxfactor,
+			tccmq,
+			tcctq,
+			tccuq,
+			tctotalc,
+			tcpue,
+			tccheck,
+			tcc,
+			tcapportchange,
+			tcremarks,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			del_flag
+		) VALUES (
+			#{id},
+			#{tcoperator},
+			#{tcaccnum},
+			#{tcsitenum},
+			#{tcpaydate},
+			#{tcpredate},
+			#{tccurdate},
+			#{tcpredisplay},
+			#{tccurdisplay},
+			#{tcprestartdisplay},
+			#{tcpreenddisplay},
+			#{tcrate},
+			#{tcloss},
+			#{tctotalq},
+			#{tcpriceq},
+			#{tcparc},
+			#{tcpartype},
+			#{tcpartypet},
+			#{tctaxfactor},
+			#{tccmq},
+			#{tcctq},
+			#{tccuq},
+			#{tctotalc},
+			#{tcpue},
+			#{tccheck},
+			#{tcc},
+			#{tcapportchange},
+			#{tcremarks},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE biz_transit_receiptinfo SET 	
+			tcoperator = #{tcoperator},
+			tcaccnum = #{tcaccnum},
+			tcsitenum = #{tcsitenum},
+			tcpaydate = #{tcpaydate},
+			tcpredate = #{tcpredate},
+			tccurdate = #{tccurdate},
+			tcpredisplay = #{tcpredisplay},
+			tccurdisplay = #{tccurdisplay},
+			tcprestartdisplay = #{tcprestartdisplay},
+			tcpreenddisplay = #{tcpreenddisplay},
+			tcrate = #{tcrate},
+			tcloss = #{tcloss},
+			tctotalq = #{tctotalq},
+			tcpriceq = #{tcpriceq},
+			tcparc = #{tcparc},
+			tcpartype = #{tcpartype},
+			tcpartypet = #{tcpartypet},
+			tctaxfactor = #{tctaxfactor},
+			tccmq = #{tccmq},
+			tcctq = #{tcctq},
+			tccuq = #{tccuq},
+			tctotalc = #{tctotalc},
+			tcpue = #{tcpue},
+			tccheck = #{tccheck},
+			tcc = #{tcc},
+			tcapportchange = #{tcapportchange},
+			tcremarks = #{tcremarks},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE biz_transit_receiptinfo SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
