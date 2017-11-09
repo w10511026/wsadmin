@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.ele.dao.BizDirectPayinfoDao;
 /**
  * 直供缴费信息Service
  * @author ws
- * @version 2017-11-06
+ * @version 2017-11-08
  */
 @Service
 @Transactional(readOnly = true)

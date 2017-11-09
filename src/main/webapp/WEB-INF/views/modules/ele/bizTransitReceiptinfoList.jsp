@@ -6,7 +6,19 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			$("#btnExport").click(function(){
+				top.$.jBox.confirm("确认要导出转供回款信息吗？","系统提示",function(v,h,f){
+					if(v=="ok"){
+						$("#searchForm").attr("action","${ctx}/ele/bizTransitReceiptinfo/export");
+						$("#searchForm").submit();
+					}
+				},{buttonsFocus:1});
+				top.$('.jbox-body .jbox-icon').css('top','55px');
+			});
+			$("#btnImport").click(function(){
+				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true},
+					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
+			});
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -17,6 +29,14 @@
 	</script>
 </head>
 <body>
+	<div id="importBox" class="hide">
+		<form id="importForm" action="${ctx}/ele/bizTransitReceiptinfo/import" method="post" enctype="multipart/form-data"
+			class="form-search" style="padding-left:20px;text-align:center;" onsubmit="loading('正在导入，请稍等...');"><br/>
+			<input id="uploadFile" name="file" type="file" style="width:330px"/><br/><br/>　　
+			<input id="btnImportSubmit" class="btn btn-primary" type="submit" value="   导    入   "/>
+			<a href="${ctx}/ele/bizTransitReceiptinfo/import/template">下载模板</a>
+		</form>
+	</div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/ele/bizTransitReceiptinfo/">转供回款信息列表</a></li>
 		<shiro:hasPermission name="ele:bizTransitReceiptinfo:edit"><li><a href="${ctx}/ele/bizTransitReceiptinfo/form">转供回款信息添加</a></li></shiro:hasPermission>
@@ -35,11 +55,26 @@
 				<form:input path="tcsitenum" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>
 			<li><label>缴费日期：</label>
-				<input name="tcpaydate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${bizTransitReceiptinfo.tcpaydate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<input name="beginTcpaydate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${bizTransitReceiptinfo.beginTcpaydate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
+				<input name="endTcpaydate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${bizTransitReceiptinfo.endTcpaydate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li><label>回款日期：</label>
+				<input name="beginTcrecdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${bizTransitReceiptinfo.beginTcrecdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
+				<input name="endTcrecdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${bizTransitReceiptinfo.endTcrecdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+			</li>
+			<li class="btns">
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
+				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -51,6 +86,7 @@
 				<th>用电户号</th>
 				<th>站点编码</th>
 				<th>缴费日期</th>
+				<th>回款日期</th>
 				<th>上期日期</th>
 				<th>本期日期</th>
 				<th>起始读数</th>
@@ -90,13 +126,16 @@
 					${bizTransitReceiptinfo.tcsitenum}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizTransitReceiptinfo.tcpaydate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizTransitReceiptinfo.tcpaydate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
-					<fmt:formatDate value="${bizTransitReceiptinfo.tcpredate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizTransitReceiptinfo.tcrecdate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
-					<fmt:formatDate value="${bizTransitReceiptinfo.tccurdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizTransitReceiptinfo.tcpredate}" pattern="yyyy-MM-dd"/>
+				</td>
+				<td>
+					<fmt:formatDate value="${bizTransitReceiptinfo.tccurdate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${bizTransitReceiptinfo.tcpredisplay}

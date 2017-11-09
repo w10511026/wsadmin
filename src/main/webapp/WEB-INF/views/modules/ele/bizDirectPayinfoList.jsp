@@ -6,7 +6,19 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			$("#btnExport").click(function(){
+				top.$.jBox.confirm("确认要导出直供缴费信息吗？","系统提示",function(v,h,f){
+					if(v=="ok"){
+						$("#searchForm").attr("action","${ctx}/ele/bizDirectPayinfo/export");
+						$("#searchForm").submit();
+					}
+				},{buttonsFocus:1});
+				top.$('.jbox-body .jbox-icon').css('top','55px');
+			});
+			$("#btnImport").click(function(){
+				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true},
+					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
+			});
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -17,6 +29,14 @@
 	</script>
 </head>
 <body>
+	<div id="importBox" class="hide">
+		<form id="importForm" action="${ctx}/ele/bizDirectPayinfo/import" method="post" enctype="multipart/form-data"
+			class="form-search" style="padding-left:20px;text-align:center;" onsubmit="loading('正在导入，请稍等...');"><br/>
+			<input id="uploadFile" name="file" type="file" style="width:330px"/><br/><br/>　　
+			<input id="btnImportSubmit" class="btn btn-primary" type="submit" value="   导    入   "/>
+			<a href="${ctx}/ele/bizDirectPayinfo/import/template">下载模板</a>
+		</form>
+	</div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/ele/bizDirectPayinfo/">直供缴费信息列表</a></li>
 		<shiro:hasPermission name="ele:bizDirectPayinfo:edit"><li><a href="${ctx}/ele/bizDirectPayinfo/form">直供缴费信息添加</a></li></shiro:hasPermission>
@@ -25,22 +45,27 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>票据日期：</label>
-				<input name="spbilldate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${bizDirectPayinfo.spbilldate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+			<li><label>账期：</label>
+				<form:input path="spbilldate" htmlEscape="false" maxlength="20" class="input-medium"/>
 			</li>
-			<li><label>起始日期：</label>
-				<input name="spstartdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${bizDirectPayinfo.spstartdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+			<li><label>户号：</label>
+				<form:input path="spaccnum" htmlEscape="false" maxlength="20" class="input-medium"/>
 			</li>
-			<li><label>截止日期：</label>
-				<input name="spenddate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${bizDirectPayinfo.spenddate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+			<li><label>铁塔起始日期：</label>
+				<input name="spttstartdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${bizDirectPayinfo.spttstartdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li><label>铁塔截止日期：</label>
+				<input name="spttenddate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${bizDirectPayinfo.spttenddate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+			</li>
+			<li class="btns">
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
+				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -48,7 +73,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>票据日期</th>
+				<th>账期</th>
 				<th>户号</th>
 				<th>起始日期</th>
 				<th>截止日期</th>
@@ -61,6 +86,8 @@
 				<th>计费电量</th>
 				<th>票面金额</th>
 				<th>票据类型</th>
+				<th>铁塔起始日期</th>
+				<th>铁塔截止日期</th>
 				<shiro:hasPermission name="ele:bizDirectPayinfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -68,16 +95,16 @@
 		<c:forEach items="${page.list}" var="bizDirectPayinfo">
 			<tr>
 				<td><a href="${ctx}/ele/bizDirectPayinfo/form?id=${bizDirectPayinfo.id}">
-					<fmt:formatDate value="${bizDirectPayinfo.spbilldate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					${bizDirectPayinfo.spbilldate}
 				</a></td>
 				<td>
 					${bizDirectPayinfo.spaccnum}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizDirectPayinfo.spstartdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizDirectPayinfo.spstartdate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
-					<fmt:formatDate value="${bizDirectPayinfo.spenddate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizDirectPayinfo.spenddate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${bizDirectPayinfo.spstartdisplay}
@@ -105,6 +132,12 @@
 				</td>
 				<td>
 					${bizDirectPayinfo.spbilltype}
+				</td>
+				<td>
+					<fmt:formatDate value="${bizDirectPayinfo.spttstartdate}" pattern="yyyy-MM-dd"/>
+				</td>
+				<td>
+					<fmt:formatDate value="${bizDirectPayinfo.spttenddate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<shiro:hasPermission name="ele:bizDirectPayinfo:edit"><td>
     				<a href="${ctx}/ele/bizDirectPayinfo/form?id=${bizDirectPayinfo.id}">修改</a>

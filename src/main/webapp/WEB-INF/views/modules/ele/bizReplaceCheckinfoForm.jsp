@@ -52,27 +52,27 @@
 		<div class="control-group">
 			<label class="control-label">抄表读数：</label>
 			<div class="controls">
-				<form:input path="inspdisplay" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="inspdisplay" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">移动电流：</label>
 			<div class="controls">
-				<form:input path="inspcmq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="inspcmq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电信电流：</label>
 			<div class="controls">
-				<form:input path="inspctq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="inspctq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">联通电流：</label>
 			<div class="controls">
-				<form:input path="inspcuq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="inspcuq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

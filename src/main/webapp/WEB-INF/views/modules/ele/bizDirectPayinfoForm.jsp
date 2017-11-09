@@ -34,11 +34,9 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">票据日期：</label>
+			<label class="control-label">账期：</label>
 			<div class="controls">
-				<input name="spbilldate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${bizDirectPayinfo.spbilldate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<form:input path="spbilldate" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -70,28 +68,28 @@
 		<div class="control-group">
 			<label class="control-label">起始读数：</label>
 			<div class="controls">
-				<form:input path="spstartdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="spstartdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">截止读数：</label>
 			<div class="controls">
-				<form:input path="spenddisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="spenddisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表起始读数：</label>
 			<div class="controls">
-				<form:input path="spprestartdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="spprestartdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表截止读数：</label>
 			<div class="controls">
-				<form:input path="sppreenddisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sppreenddisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -105,27 +103,45 @@
 		<div class="control-group">
 			<label class="control-label">损耗：</label>
 			<div class="controls">
-				<form:input path="sploss" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sploss" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">计费电量：</label>
 			<div class="controls">
-				<form:input path="sptotalq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="sptotalq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">票面金额：</label>
 			<div class="controls">
-				<form:input path="sptotalc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sptotalc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">票据类型：</label>
 			<div class="controls">
-				<form:input path="spbilltype" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<form:input path="spbilltype" htmlEscape="false" class="input-xlarge required number"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">铁塔起始日期：</label>
+			<div class="controls">
+				<input name="spttstartdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${bizDirectPayinfo.spttstartdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">铁塔截止日期：</label>
+			<div class="controls">
+				<input name="spttenddate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${bizDirectPayinfo.spttenddate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

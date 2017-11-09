@@ -17,6 +17,8 @@
 		a.sptotalq AS "sptotalq",
 		a.sptotalc AS "sptotalc",
 		a.spbilltype AS "spbilltype",
+		a.spttstartdate AS "spttstartdate",
+		a.spttenddate AS "spttenddate",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -45,11 +47,14 @@
 			<if test="spbilldate != null and spbilldate != ''">
 				AND a.spbilldate = #{spbilldate}
 			</if>
-			<if test="spstartdate != null and spstartdate != ''">
-				AND a.spstartdate &gt;= #{spstartdate}
+			<if test="spaccnum != null and spaccnum != ''">
+				AND a.spaccnum = #{spaccnum}
 			</if>
-			<if test="spenddate != null and spenddate != ''">
-				AND a.spenddate &lt;= #{spenddate}
+			<if test="spttstartdate != null and spttstartdate != ''">
+				AND a.spttstartdate &gt;= #{spttstartdate}
+			</if>
+			<if test="spttenddate != null and spttenddate != ''">
+				AND a.spttenddate &lt;= #{spttenddate}
 			</if>
 		</where>
 		<choose>
@@ -96,6 +101,8 @@
 			sptotalq,
 			sptotalc,
 			spbilltype,
+			spttstartdate,
+			spttenddate,
 			create_by,
 			create_date,
 			update_by,
@@ -116,6 +123,8 @@
 			#{sptotalq},
 			#{sptotalc},
 			#{spbilltype},
+			#{spttstartdate},
+			#{spttenddate},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -139,6 +148,8 @@
 			sptotalq = #{sptotalq},
 			sptotalc = #{sptotalc},
 			spbilltype = #{spbilltype},
+			spttstartdate = #{spttstartdate},
+			spttenddate = #{spttenddate},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

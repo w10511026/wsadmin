@@ -4,15 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import java.util.List;
 import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
 import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
 import com.thinkgem.jeesite.modules.ele.util.InitImportData;
-import com.thinkgem.jeesite.modules.sys.entity.User;
-import com.thinkgem.jeesite.modules.sys.service.SystemService;
-import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,13 +29,10 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.ele.entity.BizSiteBaseinfo;
 import com.thinkgem.jeesite.modules.ele.service.BizSiteBaseinfoService;
 
-import java.util.Date;
-import java.util.List;
-
 /**
  * 站址基础信息Controller
  * @author ws
- * @version 2017-11-06
+ * @version 2017-11-08
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizSiteBaseinfo")
@@ -92,15 +87,6 @@ public class BizSiteBaseinfoController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/ele/bizSiteBaseinfo/?repage";
 	}
 
-
-	/**
-	 * 导出站址基础信息
-	 * @param bizSiteBaseinfo
-	 * @param request
-	 * @param response
-	 * @param redirectAttributes
-	 * @return
-	 */
 	@RequiresPermissions("ele:bizSiteBaseinfo:view")
 	@RequestMapping(value = "export", method= RequestMethod.POST)
 	public String exportFile(BizSiteBaseinfo bizSiteBaseinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
@@ -112,21 +98,15 @@ public class BizSiteBaseinfoController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出站址基础信息失败！失败信息："+e.getMessage());
 		}
-		return "redirect:" + adminPath + "/ele/bizSiteBaseinfo/?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizSiteBaseinfo/?repage";
 	}
 
-	/**
-	 * 导入站址基础信息
-	 * @param file
-	 * @param redirectAttributes
-	 * @return
-	 */
 	@RequiresPermissions("ele:bizSiteBaseinfo:edit")
 	@RequestMapping(value = "import", method=RequestMethod.POST)
 	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
 		if(Global.isDemoMode()){
 			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/user/list?repage";
+			return "redirect:"+Global.getAdminPath()+"/ele/bizSiteBaseinfo/?repage";
 		}
 		try {
 			int successNum = 0;
@@ -134,11 +114,16 @@ public class BizSiteBaseinfoController extends BaseController {
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<BizSiteBaseinfo> list = ei.getDataList(BizSiteBaseinfo.class);
-			for (BizSiteBaseinfo baseinfo : list) {
+			for (BizSiteBaseinfo bizSiteBaseinfo : list) {
 				try {
-					BeanValidators.validateWithException(validator, baseinfo);
-					bizSiteBaseinfoService.save(baseinfo);
-					successNum++;
+					if (true) {
+						BeanValidators.validateWithException(validator, bizSiteBaseinfo);
+						bizSiteBaseinfoService.save(bizSiteBaseinfo);
+						successNum++;
+					} else {
+						failureMsg.append("<br/>");
+						failureNum++;
+					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("导入失败：");
 					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");
@@ -147,7 +132,11 @@ public class BizSiteBaseinfoController extends BaseController {
 						failureNum++;
 					}
 				} catch (Exception ex) {
-					failureMsg.append("导入失败：" + ex.getMessage());
+					String exceptionMsg = ex.getMessage();
+					if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+						exceptionMsg = "导入数据违反主外键约束！";
+					}
+					failureMsg.append("导入失败：" + exceptionMsg);
 				}
 			}
 			if (failureNum>0){
@@ -157,42 +146,21 @@ public class BizSiteBaseinfoController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入失败！失败信息："+e.getMessage());
 		}
-		return "redirect:" + adminPath + "/ele/bizSiteBaseinfo?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizSiteBaseinfo/?repage";
 	}
 
-	/**
-	 * 下载导入站址基础信息模板
-	 * @param response
-	 * @param redirectAttributes
-	 * @return
-	 */
 	@RequiresPermissions("ele:bizSiteBaseinfo:view")
 	@RequestMapping(value = "import/template")
 	public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "站址基础信息导入模板.xlsx";
 			List<BizSiteBaseinfo> list = Lists.newArrayList();
-			InitImportData.getImportData(BizSiteBaseinfo.class);
-			//list.add();
+			list.add((BizSiteBaseinfo) InitImportData.getImportData(new BizSiteBaseinfo()));
 			new ExportExcel("站址基础信息", BizSiteBaseinfo.class, 2).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "站址基础信息导入模板下载失败！失败信息："+e.getMessage());
 		}
-		return "redirect:" + adminPath + "/ele/bizSiteBaseinfo?repage";
-	}
-
-	public BizSiteBaseinfo initData(){
-		BizSiteBaseinfo baseinfo = new BizSiteBaseinfo();
-		baseinfo.setSicmq(new Date());
-		baseinfo.setSictq(new Date());
-		baseinfo.setSicuq(new Date());
-		baseinfo.setSidistrict("2121");
-		baseinfo.setSipropertyunit("646");
-		baseinfo.setSiretain("65");
-		baseinfo.setSiroomstyle("llla");
-		baseinfo.setSisitename("kkkkk");
-		baseinfo.setSisitenum("tttttttt");
-		return baseinfo;
+		return "redirect:"+Global.getAdminPath()+"/ele/bizSiteBaseinfo/?repage";
 	}
 }

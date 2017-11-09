@@ -1,7 +1,6 @@
 package com.thinkgem.jeesite.modules.ele.util;
 
 import com.thinkgem.jeesite.modules.ele.entity.BizDirectPayinfo;
-import com.thinkgem.jeesite.modules.ele.entity.BizSiteBaseinfo;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -36,7 +35,7 @@ public class InitImportData {
                             String value = (String) m.invoke(model); // 调用getter方法获取属性值
                             if (value == null) {
                                 m = model.getClass().getMethod("set" + name, String.class);
-                                m.invoke(model, "字符串属性");
+                                m.invoke(model, "文本");
                             }
                         }
                         if (type.equals("class java.lang.Integer")) {
@@ -63,6 +62,14 @@ public class InitImportData {
                                 m.invoke(model, new Date());
                             }
                         }
+                        if (type.equals("class java.lang.Double")) {
+                            Method m = model.getClass().getMethod("get" + name);
+                            Double value = (Double) m.invoke(model);
+                            if (value == null) {
+                                m = model.getClass().getMethod("set" + name, Double.class);
+                                m.invoke(model, 10.24);
+                            }
+                        }
                         Field f = field[j];
                         f.setAccessible(true);
                         System.out.println("属性名:" + f.getName() + " 属性值:" + f.get(model));
@@ -80,18 +87,7 @@ public class InitImportData {
                 }
             }
         }
-
-        BizSiteBaseinfo baseinfo = new BizSiteBaseinfo();
-        baseinfo.setSicmq(new Date());
-        baseinfo.setSictq(new Date());
-        baseinfo.setSicuq(new Date());
-        baseinfo.setSidistrict("2121");
-        baseinfo.setSipropertyunit("646");
-        baseinfo.setSiretain("65");
-        baseinfo.setSiroomstyle("llla");
-        baseinfo.setSisitename("kkkkk");
-        baseinfo.setSisitenum("tttttttt");
-        return baseinfo;
+        return model;
     }
 
     public static void main(String[] args) {

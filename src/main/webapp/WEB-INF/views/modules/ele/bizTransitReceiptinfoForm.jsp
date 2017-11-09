@@ -64,6 +64,15 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">回款日期：</label>
+			<div class="controls">
+				<input name="tcrecdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${bizTransitReceiptinfo.tcrecdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">上期日期：</label>
 			<div class="controls">
 				<input name="tcpredate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
@@ -84,28 +93,28 @@
 		<div class="control-group">
 			<label class="control-label">起始读数：</label>
 			<div class="controls">
-				<form:input path="tcpredisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcpredisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">截止读数：</label>
 			<div class="controls">
-				<form:input path="tccurdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tccurdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表起始读数：</label>
 			<div class="controls">
-				<form:input path="tcprestartdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcprestartdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表截止读数：</label>
 			<div class="controls">
-				<form:input path="tcpreenddisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcpreenddisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -119,26 +128,26 @@
 		<div class="control-group">
 			<label class="control-label">损耗：</label>
 			<div class="controls">
-				<form:input path="tcloss" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcloss" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">计费电量：</label>
 			<div class="controls">
-				<form:input path="tctotalq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="tctotalq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电费单价：</label>
 			<div class="controls">
-				<form:input path="tcpriceq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="tcpriceq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">票面金额：</label>
 			<div class="controls">
-				<form:input path="tcparc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcparc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -159,55 +168,55 @@
 		<div class="control-group">
 			<label class="control-label">税负因子：</label>
 			<div class="controls">
-				<form:input path="tctaxfactor" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tctaxfactor" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">移动电流：</label>
 			<div class="controls">
-				<form:input path="tccmq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tccmq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电信电流：</label>
 			<div class="controls">
-				<form:input path="tcctq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcctq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">联通电流：</label>
 			<div class="controls">
-				<form:input path="tccuq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="tccuq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">分摊电费总额：</label>
 			<div class="controls">
-				<form:input path="tctotalc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tctotalc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">PUE：</label>
 			<div class="controls">
-				<form:input path="tcpue" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcpue" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">核对金额：</label>
 			<div class="controls">
-				<form:input path="tccheck" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tccheck" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">回款金额：</label>
 			<div class="controls">
-				<form:input path="tcc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tcc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

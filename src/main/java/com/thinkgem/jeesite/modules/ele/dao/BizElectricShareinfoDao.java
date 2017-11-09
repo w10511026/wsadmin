@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizElectricShareinfo;
 /**
  * 电流分摊信息DAO接口
  * @author ws
- * @version 2017-11-06
+ * @version 2017-11-08
  */
 @MyBatisDao
 public interface BizElectricShareinfoDao extends CrudDao<BizElectricShareinfo> {

@@ -44,7 +44,13 @@
 				AND a.tconsitenum = #{tconsitenum}
 			</if>
 			<if test="tconpa != null and tconpa != ''">
-				AND a.tconpa = #{tconpa}
+				AND a.tconpa LIKE 
+					<if test="dbName == 'oracle'">'%'||#{tconpa}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{tconpa}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{tconpa},'%')</if>
+			</if>
+			<if test="beginTconprice != null and endTconprice != null and beginTconprice != '' and endTconprice != ''">
+				AND a.tconprice BETWEEN #{beginTconprice} AND #{endTconprice}
 			</if>
 		</where>
 		<choose>

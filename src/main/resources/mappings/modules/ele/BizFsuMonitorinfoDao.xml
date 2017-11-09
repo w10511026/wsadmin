@@ -35,9 +35,6 @@
 			<if test="fsusitenum != null and fsusitenum != ''">
 				AND a.fsusitenum = #{fsusitenum}
 			</if>
-			<if test="fsuq != null and fsuq != ''">
-				AND a.fsuq = #{fsuq}
-			</if>
 			<if test="beginFsudate != null and endFsudate != null and beginFsudate != '' and endFsudate != ''">
 				AND a.fsudate BETWEEN #{beginFsudate} AND #{endFsudate}
 			</if>

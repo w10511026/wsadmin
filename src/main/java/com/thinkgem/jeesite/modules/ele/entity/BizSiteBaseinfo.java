@@ -1,7 +1,7 @@
 package com.thinkgem.jeesite.modules.ele.entity;
 
-import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 import org.hibernate.validator.constraints.Length;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 站址基础信息Entity
  * @author ws
- * @version 2017-11-06
+ * @version 2017-11-08
  */
 public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	
@@ -44,7 +44,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=20)
+	@ExcelField(title="站址编码", align=2, sort=10)
 	public String getSisitenum() {
 		return sisitenum;
 	}
@@ -54,7 +54,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站址名称长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址名称", align=2, sort=30)
+	@ExcelField(title="站址名称", align=2, sort=10)
 	public String getSisitename() {
 		return sisitename;
 	}
@@ -64,7 +64,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=6, message="原产权单位长度必须介于 1 和 6 之间")
-	@ExcelField(title="原产权单位", align=2, sort=40)
+	@ExcelField(title="原产权单位", align=2, sort=10)
 	public String getSipropertyunit() {
 		return sipropertyunit;
 	}
@@ -74,7 +74,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=20, message="机房类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="机房类型", align=2, sort=50)
+	@ExcelField(title="机房类型", align=2, sort=10)
 	public String getSiroomstyle() {
 		return siroomstyle;
 	}
@@ -84,7 +84,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=0, max=6, message="保留站信息长度必须介于 0 和 6 之间")
-	@ExcelField(title="保留站信息", align=2, sort=60)
+	@ExcelField(title="保留站信息", align=2, sort=10)
 	public String getSiretain() {
 		return siretain;
 	}
@@ -93,8 +93,8 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 		this.siretain = siretain;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ExcelField(title="移动起租日期", align=2, sort=70)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@ExcelField(title="移动起租日期", align=2, sort=10)
 	public Date getSicmq() {
 		return sicmq;
 	}
@@ -103,8 +103,8 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 		this.sicmq = sicmq;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ExcelField(title="电信起租日期", align=2, sort=80)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@ExcelField(title="电信起租日期", align=2, sort=10)
 	public Date getSictq() {
 		return sictq;
 	}
@@ -113,8 +113,8 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 		this.sictq = sictq;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ExcelField(title="联通起租日期", align=2, sort=90)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@ExcelField(title="联通起租日期", align=2, sort=10)
 	public Date getSicuq() {
 		return sicuq;
 	}

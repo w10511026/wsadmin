@@ -70,6 +70,8 @@ public class GenUtils {
 					|| StringUtils.startsWithIgnoreCase(column.getJdbcType(), "TIMESTAMP")){
 				column.setJavaType("java.util.Date");
 				column.setShowType("dateselect");
+			}else if (StringUtils.startsWithIgnoreCase(column.getJdbcType(), "DOUBLE")){
+				column.setJavaType("Double");
 			}else if (StringUtils.startsWithIgnoreCase(column.getJdbcType(), "BIGINT")
 					|| StringUtils.startsWithIgnoreCase(column.getJdbcType(), "NUMBER")){
 				// 如果是浮点型

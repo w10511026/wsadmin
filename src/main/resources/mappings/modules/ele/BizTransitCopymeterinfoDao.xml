@@ -40,9 +40,6 @@
 			<if test="beginTddate != null and endTddate != null and beginTddate != '' and endTddate != ''">
 				AND a.tddate BETWEEN #{beginTddate} AND #{endTddate}
 			</if>
-			<if test="tddisplay != null and tddisplay != ''">
-				AND a.tddisplay = #{tddisplay}
-			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

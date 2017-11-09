@@ -53,8 +53,8 @@
 			<if test="tpaccnum != null and tpaccnum != ''">
 				AND a.tpaccnum = #{tpaccnum}
 			</if>
-			<if test="tppaydate != null and tppaydate != ''">
-				AND a.tppaydate = #{tppaydate}
+			<if test="beginTppaydate != null and endTppaydate != null and beginTppaydate != '' and endTppaydate != ''">
+				AND a.tppaydate BETWEEN #{beginTppaydate} AND #{endTppaydate}
 			</if>
 			<if test="tpstartdate != null and tpstartdate != ''">
 				AND a.tpstartdate &gt;= #{tpstartdate}

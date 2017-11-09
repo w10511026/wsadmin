@@ -43,21 +43,21 @@
 		<div class="control-group">
 			<label class="control-label">移动电流：</label>
 			<div class="controls">
-				<form:input path="rocmq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="rocmq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电信电流：</label>
 			<div class="controls">
-				<form:input path="roctq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="roctq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">联通电流：</label>
 			<div class="controls">
-				<form:input path="rocuq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="rocuq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

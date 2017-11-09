@@ -43,7 +43,7 @@
 		<div class="control-group">
 			<label class="control-label">监控电流：</label>
 			<div class="controls">
-				<form:input path="fsuq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="fsuq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">

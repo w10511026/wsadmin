@@ -8,6 +8,7 @@
 		a.tcaccnum AS "tcaccnum",
 		a.tcsitenum AS "tcsitenum",
 		a.tcpaydate AS "tcpaydate",
+		a.tcrecdate AS "tcrecdate",
 		a.tcpredate AS "tcpredate",
 		a.tccurdate AS "tccurdate",
 		a.tcpredisplay AS "tcpredisplay",
@@ -65,8 +66,11 @@
 			<if test="tcsitenum != null and tcsitenum != ''">
 				AND a.tcsitenum = #{tcsitenum}
 			</if>
-			<if test="tcpaydate != null and tcpaydate != ''">
-				AND a.tcpaydate = #{tcpaydate}
+			<if test="beginTcpaydate != null and endTcpaydate != null and beginTcpaydate != '' and endTcpaydate != ''">
+				AND a.tcpaydate BETWEEN #{beginTcpaydate} AND #{endTcpaydate}
+			</if>
+			<if test="beginTcrecdate != null and endTcrecdate != null and beginTcrecdate != '' and endTcrecdate != ''">
+				AND a.tcrecdate BETWEEN #{beginTcrecdate} AND #{endTcrecdate}
 			</if>
 		</where>
 		<choose>
@@ -104,6 +108,7 @@
 			tcaccnum,
 			tcsitenum,
 			tcpaydate,
+			tcrecdate,
 			tcpredate,
 			tccurdate,
 			tcpredisplay,
@@ -138,6 +143,7 @@
 			#{tcaccnum},
 			#{tcsitenum},
 			#{tcpaydate},
+			#{tcrecdate},
 			#{tcpredate},
 			#{tccurdate},
 			#{tcpredisplay},
@@ -175,6 +181,7 @@
 			tcaccnum = #{tcaccnum},
 			tcsitenum = #{tcsitenum},
 			tcpaydate = #{tcpaydate},
+			tcrecdate = #{tcrecdate},
 			tcpredate = #{tcpredate},
 			tccurdate = #{tccurdate},
 			tcpredisplay = #{tcpredisplay},

@@ -6,7 +6,19 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			$("#btnExport").click(function(){
+				top.$.jBox.confirm("确认要导出电流分摊信息吗？","系统提示",function(v,h,f){
+					if(v=="ok"){
+						$("#searchForm").attr("action","${ctx}/ele/bizElectricShareinfo/export");
+						$("#searchForm").submit();
+					}
+				},{buttonsFocus:1});
+				top.$('.jbox-body .jbox-icon').css('top','55px');
+			});
+			$("#btnImport").click(function(){
+				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true},
+					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
+			});
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -17,6 +29,14 @@
 	</script>
 </head>
 <body>
+	<div id="importBox" class="hide">
+		<form id="importForm" action="${ctx}/ele/bizElectricShareinfo/import" method="post" enctype="multipart/form-data"
+			class="form-search" style="padding-left:20px;text-align:center;" onsubmit="loading('正在导入，请稍等...');"><br/>
+			<input id="uploadFile" name="file" type="file" style="width:330px"/><br/><br/>　　
+			<input id="btnImportSubmit" class="btn btn-primary" type="submit" value="   导    入   "/>
+			<a href="${ctx}/ele/bizElectricShareinfo/import/template">下载模板</a>
+		</form>
+	</div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/ele/bizElectricShareinfo/">电流分摊信息列表</a></li>
 		<shiro:hasPermission name="ele:bizElectricShareinfo:edit"><li><a href="${ctx}/ele/bizElectricShareinfo/form">电流分摊信息添加</a></li></shiro:hasPermission>
@@ -31,7 +51,11 @@
 			<li><label>宿主站站址编码：</label>
 				<form:input path="rohistnum" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns">
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
+				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -71,7 +95,7 @@
 					${bizElectricShareinfo.rohistnum}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizElectricShareinfo.roupdatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizElectricShareinfo.roupdatedate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${bizElectricShareinfo.roremarks}
@@ -80,7 +104,7 @@
 					${bizElectricShareinfo.createBy.id}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizElectricShareinfo.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bizElectricShareinfo.createDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${bizElectricShareinfo.updateBy.id}

@@ -70,68 +70,68 @@
 		<div class="control-group">
 			<label class="control-label">起始读数：</label>
 			<div class="controls">
-				<form:input path="tpstartdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tpstartdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">截止读数：</label>
 			<div class="controls">
-				<form:input path="tpenddisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tpenddisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表起始读数：</label>
 			<div class="controls">
-				<form:input path="tpprestartdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tpprestartdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表截止读数：</label>
 			<div class="controls">
-				<form:input path="tpperenddisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tpperenddisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">倍率：</label>
 			<div class="controls">
-				<form:input path="tprate" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<form:input path="tprate" htmlEscape="false" maxlength="20" class="input-xlarge required digits"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">损耗：</label>
 			<div class="controls">
-				<form:input path="tploss" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tploss" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">计费电量：</label>
 			<div class="controls">
-				<form:input path="tptotalq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="tptotalq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电费单价：</label>
 			<div class="controls">
-				<form:input path="tpbillprice" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="tpbillprice" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">票面金额：</label>
 			<div class="controls">
-				<form:input path="tpmainc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tpmainc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">代开税金：</label>
 			<div class="controls">
-				<form:input path="tpdktax" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="tpdktax" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -145,7 +145,7 @@
 		<div class="control-group">
 			<label class="control-label">总金额：</label>
 			<div class="controls">
-				<form:input path="tptotalc" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="tptotalc" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">

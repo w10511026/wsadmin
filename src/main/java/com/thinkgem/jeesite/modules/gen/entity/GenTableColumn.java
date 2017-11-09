@@ -260,7 +260,7 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 			list.add("com.fasterxml.jackson.annotation.JsonBackReference");
 		}
 		if ("java.util.Date".equals(getJavaType())){
-			list.add("com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd HH:mm:ss\")");
+			list.add("com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd\")");
 		}
 		// 导入JSR303验证依赖包
 		if (!"1".equals(getIsNull()) && !"String".equals(getJavaType())){
@@ -274,6 +274,7 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 			list.add("org.hibernate.validator.constraints.Length(min=0, max="+getDataLength()
 					+", message=\""+getComments()+"长度必须介于 0 和 "+getDataLength()+" 之间\")");
 		}
+		list.add("com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField(title=\"" + getNameAndComments().split(":")[1].trim() + "\", align=2, sort=" + 10 + ")");
 		return list;
 	}
 	
