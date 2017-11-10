@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * FSU监控信息Entity
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 public class BizFsuMonitorinfo extends DataEntity<BizFsuMonitorinfo> {
 	

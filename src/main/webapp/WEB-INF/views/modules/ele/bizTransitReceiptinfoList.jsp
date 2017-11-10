@@ -19,6 +19,7 @@
 				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true},
 					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
 			});
+			initTableCheckbox();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -45,11 +46,11 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>运营商：</label>
-				<form:input path="tcoperator" htmlEscape="false" maxlength="20" class="input-medium"/>
-			</li>
 			<li><label>用电户号：</label>
 				<form:input path="tcaccnum" htmlEscape="false" maxlength="15" class="input-medium"/>
+			</li>
+			<li><label>运营商：</label>
+				<form:input path="tcoperator" htmlEscape="false" maxlength="20" class="input-medium"/>
 			</li>
 			<li><label>站点编码：</label>
 				<form:input path="tcsitenum" htmlEscape="false" maxlength="30" class="input-medium"/>
@@ -72,6 +73,7 @@
 			</li>
 			<li class="btns">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input onclick="deletebatch('${ctx}/ele/bizTransitReceiptinfo/deletebatch')" class="btn btn-primary" type="button" value="删除"/>
 				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
 				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
 			</li>
@@ -79,11 +81,12 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-hover">
 		<thead>
 			<tr>
-				<th>运营商</th>
+				<th hidden></th>
 				<th>用电户号</th>
+				<th>运营商</th>
 				<th>站点编码</th>
 				<th>缴费日期</th>
 				<th>回款日期</th>
@@ -116,11 +119,12 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bizTransitReceiptinfo">
 			<tr>
+				<td hidden><span id="${bizTransitReceiptinfo.id}ids">${bizTransitReceiptinfo.id}</span></td>
 				<td><a href="${ctx}/ele/bizTransitReceiptinfo/form?id=${bizTransitReceiptinfo.id}">
-					${bizTransitReceiptinfo.tcoperator}
+					${bizTransitReceiptinfo.tcaccnum}
 				</a></td>
 				<td>
-					${bizTransitReceiptinfo.tcaccnum}
+					${bizTransitReceiptinfo.tcoperator}
 				</td>
 				<td>
 					${bizTransitReceiptinfo.tcsitenum}

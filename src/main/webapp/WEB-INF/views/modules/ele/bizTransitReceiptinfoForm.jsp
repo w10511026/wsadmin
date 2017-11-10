@@ -34,16 +34,16 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">运营商：</label>
+			<label class="control-label">用电户号：</label>
 			<div class="controls">
-				<form:input path="tcoperator" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<form:input path="tcaccnum" htmlEscape="false" maxlength="15" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">用电户号：</label>
+			<label class="control-label">运营商：</label>
 			<div class="controls">
-				<form:input path="tcaccnum" htmlEscape="false" maxlength="15" class="input-xlarge required"/>
+				<form:input path="tcoperator" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizTransitContractinfo;
 /**
  * 转供合同信息DAO接口
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 @MyBatisDao
 public interface BizTransitContractinfoDao extends CrudDao<BizTransitContractinfo> {

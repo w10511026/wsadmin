@@ -19,6 +19,7 @@
 				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true},
 					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
 			});
+			initTableCheckbox();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -58,6 +59,7 @@
 			</li>
 			<li class="btns">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input onclick="deletebatch('${ctx}/ele/bizTransitCopymeterinfo/deletebatch')" class="btn btn-primary" type="button" value="删除"/>
 				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
 				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
 			</li>
@@ -65,9 +67,10 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-hover">
 		<thead>
 			<tr>
+				<th hidden></th>
 				<th>站址编码</th>
 				<th>抄表日期</th>
 				<th>抄表读数</th>
@@ -81,6 +84,7 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bizTransitCopymeterinfo">
 			<tr>
+				<td hidden><span id="${bizTransitCopymeterinfo.id}ids">${bizTransitCopymeterinfo.id}</span></td>
 				<td><a href="${ctx}/ele/bizTransitCopymeterinfo/form?id=${bizTransitCopymeterinfo.id}">
 					${bizTransitCopymeterinfo.tdsitenum}
 				</a></td>

@@ -2,6 +2,8 @@
 package com.thinkgem.jeesite.common.utils;
 
 import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -167,7 +169,16 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		long afterTime = after.getTime();
 		return (afterTime - beforeTime) / (1000 * 60 * 60 * 24);
 	}
-	
+
+	public static Date getNowDateShort() {
+		Date currentTime = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = formatter.format(currentTime);
+		ParsePosition pos = new ParsePosition(8);
+		Date currentTime_2 = formatter.parse(dateString, pos);
+		return currentTime_2;
+	}
+
 	/**
 	 * @param args
 	 * @throws ParseException

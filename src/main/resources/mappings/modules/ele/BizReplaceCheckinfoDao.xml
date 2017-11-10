@@ -15,8 +15,7 @@
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizReplaceCheckinfoJoins">
@@ -36,7 +35,7 @@
 		FROM biz_replace_checkinfo a
 		<include refid="bizReplaceCheckinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 			<if test="inspsitenum != null and inspsitenum != ''">
 				AND a.inspsitenum = #{inspsitenum}
 			</if>
@@ -63,7 +62,7 @@
 		FROM biz_replace_checkinfo a
 		<include refid="bizReplaceCheckinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -89,8 +88,7 @@
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
 			#{inspsitenum},
@@ -104,8 +102,7 @@
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
@@ -125,8 +122,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_replace_checkinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_replace_checkinfo
 		WHERE id = #{id}
 	</update>
 	

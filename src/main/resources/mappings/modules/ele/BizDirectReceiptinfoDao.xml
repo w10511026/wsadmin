@@ -4,8 +4,8 @@
     
 	<sql id="bizDirectReceiptinfoColumns">
 		a.id AS "id",
-		a.scoperator AS "scoperator",
 		a.scaccnum AS "scaccnum",
+		a.scoperator AS "scoperator",
 		a.scsitenum AS "scsitenum",
 		a.sprecdate AS "sprecdate",
 		a.scbilldate AS "scbilldate",
@@ -30,12 +30,13 @@
 		a.sccheck AS "sccheck",
 		a.scc AS "scc",
 		a.scapportchange AS "scapportchange",
+		a.spttstartdate AS "spttstartdate",
+		a.spttenddate AS "spttenddate",
 		a.scremarks AS "scremarks",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizDirectReceiptinfoJoins">
@@ -55,9 +56,12 @@
 		FROM biz_direct_receiptinfo a
 		<include refid="bizDirectReceiptinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 			<if test="scaccnum != null and scaccnum != ''">
 				AND a.scaccnum = #{scaccnum}
+			</if>
+			<if test="scoperator != null and scoperator != ''">
+				AND a.scoperator = #{scoperator}
 			</if>
 			<if test="scsitenum != null and scsitenum != ''">
 				AND a.scsitenum = #{scsitenum}
@@ -65,8 +69,8 @@
 			<if test="beginSprecdate != null and endSprecdate != null and beginSprecdate != '' and endSprecdate != ''">
 				AND a.sprecdate BETWEEN #{beginSprecdate} AND #{endSprecdate}
 			</if>
-			<if test="beginScbilldate != null and endScbilldate != null and beginScbilldate != '' and endScbilldate != ''">
-				AND a.scbilldate BETWEEN #{beginScbilldate} AND #{endScbilldate}
+			<if test="scbilldate != null and scbilldate != ''">
+				AND a.scbilldate = #{scbilldate}
 			</if>
 		</where>
 		<choose>
@@ -85,7 +89,7 @@
 		FROM biz_direct_receiptinfo a
 		<include refid="bizDirectReceiptinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -100,8 +104,8 @@
 	<insert id="insert">
 		INSERT INTO biz_direct_receiptinfo(
 			id,
-			scoperator,
 			scaccnum,
+			scoperator,
 			scsitenum,
 			sprecdate,
 			scbilldate,
@@ -126,16 +130,17 @@
 			sccheck,
 			scc,
 			scapportchange,
+			spttstartdate,
+			spttenddate,
 			scremarks,
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
-			#{scoperator},
 			#{scaccnum},
+			#{scoperator},
 			#{scsitenum},
 			#{sprecdate},
 			#{scbilldate},
@@ -160,19 +165,20 @@
 			#{sccheck},
 			#{scc},
 			#{scapportchange},
+			#{spttstartdate},
+			#{spttenddate},
 			#{scremarks},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE biz_direct_receiptinfo SET 	
-			scoperator = #{scoperator},
 			scaccnum = #{scaccnum},
+			scoperator = #{scoperator},
 			scsitenum = #{scsitenum},
 			sprecdate = #{sprecdate},
 			scbilldate = #{scbilldate},
@@ -197,6 +203,8 @@
 			sccheck = #{sccheck},
 			scc = #{scc},
 			scapportchange = #{scapportchange},
+			spttstartdate = #{spttstartdate},
+			spttenddate = #{spttenddate},
 			scremarks = #{scremarks},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
@@ -204,8 +212,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_direct_receiptinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_direct_receiptinfo
 		WHERE id = #{id}
 	</update>
 	

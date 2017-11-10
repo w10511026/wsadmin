@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizTransitCopymeterinfo;
 /**
  * 转供抄表信息DAO接口
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 @MyBatisDao
 public interface BizTransitCopymeterinfoDao extends CrudDao<BizTransitCopymeterinfo> {

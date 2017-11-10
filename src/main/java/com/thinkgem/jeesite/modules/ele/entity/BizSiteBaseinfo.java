@@ -10,13 +10,13 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 站址基础信息Entity
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	
 	private static final long serialVersionUID = 1L;
-	private String sidistrict;		// 区县
 	private String sisitenum;		// 站址编码
+	private String sidistrict;		// 区县
 	private String sisitename;		// 站址名称
 	private String sipropertyunit;		// 原产权单位
 	private String siroomstyle;		// 机房类型
@@ -33,16 +33,6 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 		super(id);
 	}
 
-	@Length(min=1, max=6, message="区县长度必须介于 1 和 6 之间")
-	@ExcelField(title="区县", align=2, sort=10)
-	public String getSidistrict() {
-		return sidistrict;
-	}
-
-	public void setSidistrict(String sidistrict) {
-		this.sidistrict = sidistrict;
-	}
-	
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
 	@ExcelField(title="站址编码", align=2, sort=10)
 	public String getSisitenum() {
@@ -51,6 +41,16 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 
 	public void setSisitenum(String sisitenum) {
 		this.sisitenum = sisitenum;
+	}
+	
+	@Length(min=1, max=6, message="区县长度必须介于 1 和 6 之间")
+	@ExcelField(title="区县", align=2, sort=10)
+	public String getSidistrict() {
+		return sidistrict;
+	}
+
+	public void setSidistrict(String sidistrict) {
+		this.sidistrict = sidistrict;
 	}
 	
 	@Length(min=1, max=30, message="站址名称长度必须介于 1 和 30 之间")

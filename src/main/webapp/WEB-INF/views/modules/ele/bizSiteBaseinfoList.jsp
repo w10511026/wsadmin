@@ -19,6 +19,7 @@
 				$.jBox($("#importBox").html(), {title:"导入数据", buttons:{"关闭":true},
 					bottomText:"导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"});
 			});
+			initTableCheckbox();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -45,17 +46,18 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>区县：</label>
-				<form:input path="sidistrict" htmlEscape="false" maxlength="6" class="input-medium"/>
-			</li>
 			<li><label>站址编码：</label>
 				<form:input path="sisitenum" htmlEscape="false" maxlength="30" class="input-medium"/>
+			</li>
+			<li><label>区县：</label>
+				<form:input path="sidistrict" htmlEscape="false" maxlength="6" class="input-medium"/>
 			</li>
 			<li><label>站址名称：</label>
 				<form:input path="sisitename" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>
 			<li class="btns">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input onclick="deletebatch('${ctx}/ele/bizSiteBaseinfo/deletebatch')" class="btn btn-primary" type="button" value="删除"/>
 				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
 				<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
 			</li>
@@ -63,11 +65,12 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-striped table-bordered table-condensed table-hover">
 		<thead>
 			<tr>
-				<th>区县</th>
+				<th hidden></th>
 				<th>站址编码</th>
+				<th>区县</th>
 				<th>站址名称</th>
 				<th>原产权单位</th>
 				<th>机房类型</th>
@@ -81,11 +84,12 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bizSiteBaseinfo">
 			<tr>
+				<td hidden><span id="${bizSiteBaseinfo.id}ids">${bizSiteBaseinfo.id}</span></td>
 				<td><a href="${ctx}/ele/bizSiteBaseinfo/form?id=${bizSiteBaseinfo.id}">
-					${bizSiteBaseinfo.sidistrict}
+					${bizSiteBaseinfo.sisitenum}
 				</a></td>
 				<td>
-					${bizSiteBaseinfo.sisitenum}
+					${bizSiteBaseinfo.sidistrict}
 				</td>
 				<td>
 					${bizSiteBaseinfo.sisitename}

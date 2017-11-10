@@ -11,13 +11,13 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 转供合同信息Entity
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	
 	private static final long serialVersionUID = 1L;
-	private String tconsitename;		// 站址编码
 	private String tconsitenum;		// 合同编码
+	private String tconsitename;		// 站址编码
 	private String tconpa;		// 供电方名称
 	private Date tconstartdate;		// 合同起始日期
 	private Date tconenddate;		// 合同截止日期
@@ -35,16 +35,6 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 		super(id);
 	}
 
-	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=10)
-	public String getTconsitename() {
-		return tconsitename;
-	}
-
-	public void setTconsitename(String tconsitename) {
-		this.tconsitename = tconsitename;
-	}
-	
 	@Length(min=1, max=20, message="合同编码长度必须介于 1 和 20 之间")
 	@ExcelField(title="合同编码", align=2, sort=10)
 	public String getTconsitenum() {
@@ -53,6 +43,16 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 
 	public void setTconsitenum(String tconsitenum) {
 		this.tconsitenum = tconsitenum;
+	}
+	
+	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
+	@ExcelField(title="站址编码", align=2, sort=10)
+	public String getTconsitename() {
+		return tconsitename;
+	}
+
+	public void setTconsitename(String tconsitename) {
+		this.tconsitename = tconsitename;
 	}
 	
 	@Length(min=1, max=20, message="供电方名称长度必须介于 1 和 20 之间")

@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizDirectPayinfo;
 /**
  * 直供缴费信息DAO接口
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 @MyBatisDao
 public interface BizDirectPayinfoDao extends CrudDao<BizDirectPayinfo> {

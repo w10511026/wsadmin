@@ -34,16 +34,16 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">运营商：</label>
+			<label class="control-label">用电户号：</label>
 			<div class="controls">
-				<form:input path="scoperator" htmlEscape="false" maxlength="6" class="input-xlarge required"/>
+				<form:input path="scaccnum" htmlEscape="false" maxlength="15" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">用电户号：</label>
+			<label class="control-label">运营商：</label>
 			<div class="controls">
-				<form:input path="scaccnum" htmlEscape="false" maxlength="15" class="input-xlarge required"/>
+				<form:input path="scoperator" htmlEscape="false" maxlength="6" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -64,11 +64,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">票据日期：</label>
+			<label class="control-label">账期：</label>
 			<div class="controls">
-				<input name="scbilldate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${bizDirectReceiptinfo.scbilldate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<form:input path="scbilldate" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -93,28 +91,28 @@
 		<div class="control-group">
 			<label class="control-label">上期示度：</label>
 			<div class="controls">
-				<form:input path="scpredisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="scpredisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">本期示度：</label>
 			<div class="controls">
-				<form:input path="sccurdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sccurdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表起始读数：</label>
 			<div class="controls">
-				<form:input path="scprestartdisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="scprestartdisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老表截止读数：</label>
 			<div class="controls">
-				<form:input path="scpreenddisplay" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="scpreenddisplay" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -128,26 +126,26 @@
 		<div class="control-group">
 			<label class="control-label">损耗：</label>
 			<div class="controls">
-				<form:input path="scloss" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="scloss" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">计费电量：</label>
 			<div class="controls">
-				<form:input path="sctotalq" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="sctotalq" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电费单价：</label>
 			<div class="controls">
-				<form:input path="scprice" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="scprice" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">票面金额：</label>
 			<div class="controls">
-				<form:input path="scparc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="scparc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -168,53 +166,71 @@
 		<div class="control-group">
 			<label class="control-label">移动电流：</label>
 			<div class="controls">
-				<form:input path="sccmq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sccmq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">电信电流：</label>
 			<div class="controls">
-				<form:input path="scctq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="scctq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">联通电流：</label>
 			<div class="controls">
-				<form:input path="sccuq" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sccuq" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">分摊电费总额：</label>
 			<div class="controls">
-				<form:input path="sctotalc" htmlEscape="false" class="input-xlarge required"/>
+				<form:input path="sctotalc" htmlEscape="false" class="input-xlarge required number"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">PUE：</label>
 			<div class="controls">
-				<form:input path="scpue" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="scpue" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">核对金额：</label>
 			<div class="controls">
-				<form:input path="sccheck" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="sccheck" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">回款金额：</label>
 			<div class="controls">
-				<form:input path="scc" htmlEscape="false" class="input-xlarge "/>
+				<form:input path="scc" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">本月分摊比例是否发生变动：</label>
 			<div class="controls">
 				<form:input path="scapportchange" htmlEscape="false" maxlength="5" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">铁塔起始日期：</label>
+			<div class="controls">
+				<input name="spttstartdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${bizDirectReceiptinfo.spttstartdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">铁塔截止日期：</label>
+			<div class="controls">
+				<input name="spttenddate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${bizDirectReceiptinfo.spttenddate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">

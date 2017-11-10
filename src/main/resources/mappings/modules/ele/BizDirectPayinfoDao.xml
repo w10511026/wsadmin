@@ -22,8 +22,7 @@
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizDirectPayinfoJoins">
@@ -43,7 +42,7 @@
 		FROM biz_direct_payinfo a
 		<include refid="bizDirectPayinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 			<if test="spbilldate != null and spbilldate != ''">
 				AND a.spbilldate = #{spbilldate}
 			</if>
@@ -73,7 +72,7 @@
 		FROM biz_direct_payinfo a
 		<include refid="bizDirectPayinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -106,8 +105,7 @@
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
 			#{spbilldate},
@@ -128,8 +126,7 @@
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
@@ -156,8 +153,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_direct_payinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_direct_payinfo
 		WHERE id = #{id}
 	</update>
 	

@@ -14,8 +14,7 @@
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizElectricShareinfoJoins">
@@ -35,7 +34,7 @@
 		FROM biz_electric_shareinfo a
 		<include refid="bizElectricShareinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 			<if test="rositenum != null and rositenum != ''">
 				AND a.rositenum = #{rositenum}
 			</if>
@@ -59,7 +58,7 @@
 		FROM biz_electric_shareinfo a
 		<include refid="bizElectricShareinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -84,8 +83,7 @@
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
 			#{rositenum},
@@ -98,8 +96,7 @@
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
@@ -118,8 +115,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_electric_shareinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_electric_shareinfo
 		WHERE id = #{id}
 	</update>
 	

@@ -15,13 +15,12 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.thinkgem.jeesite.common.dto.AjaxMsg;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
@@ -32,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitPayinfoService;
 /**
  * 转供缴费信息Controller
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitPayinfo")
@@ -71,20 +70,57 @@ public class BizTransitPayinfoController extends BaseController {
 	@RequiresPermissions("ele:bizTransitPayinfo:edit")
 	@RequestMapping(value = "save")
 	public String save(BizTransitPayinfo bizTransitPayinfo, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, bizTransitPayinfo)){
-			return form(bizTransitPayinfo, model);
+		try {
+			if (!beanValidator(model, bizTransitPayinfo)){
+				return form(bizTransitPayinfo, model);
+			}
+			bizTransitPayinfoService.save(bizTransitPayinfo);
+			addMessage(redirectAttributes, "保存转供缴费信息成功");
+		} catch (Exception ex) {
+			String exceptionMsg = ex.getMessage();
+			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+				exceptionMsg = "导入失败：数据违反主外键约束！";
+			}
+			addMessage(redirectAttributes, exceptionMsg);
 		}
-		bizTransitPayinfoService.save(bizTransitPayinfo);
-		addMessage(redirectAttributes, "保存转供缴费信息成功");
 		return "redirect:"+Global.getAdminPath()+"/ele/bizTransitPayinfo/?repage";
 	}
 	
 	@RequiresPermissions("ele:bizTransitPayinfo:edit")
 	@RequestMapping(value = "delete")
 	public String delete(BizTransitPayinfo bizTransitPayinfo, RedirectAttributes redirectAttributes) {
-		bizTransitPayinfoService.delete(bizTransitPayinfo);
-		addMessage(redirectAttributes, "删除转供缴费信息成功");
+		try {
+			bizTransitPayinfoService.delete(bizTransitPayinfo);
+			addMessage(redirectAttributes, "删除转供缴费信息成功");
+		} catch (Exception ex) {
+			String exceptionMsg = ex.getMessage();
+			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+				exceptionMsg = "删除失败：数据违反主外键约束！";
+			}
+			addMessage(redirectAttributes, exceptionMsg);
+		}
 		return "redirect:"+Global.getAdminPath()+"/ele/bizTransitPayinfo/?repage";
+	}
+
+	@RequiresPermissions("ele:bizTransitPayinfo:edit")
+	@RequestMapping(value = "deletebatch")
+	@ResponseBody
+	public AjaxMsg deleteBatch(@RequestParam("ids[]")List<String> ids) {
+		AjaxMsg ajaxMsg = new AjaxMsg(String.valueOf(HttpStatus.OK), "删除转供缴费信息成功");
+		try {
+			for (String id : ids) {
+				BizTransitPayinfo bizTransitPayinfo = new BizTransitPayinfo();
+				bizTransitPayinfo.setId(id);
+				bizTransitPayinfoService.delete(bizTransitPayinfo);
+			}
+		} catch (Exception ex) {
+			String exceptionMsg = ex.getMessage();
+			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+				exceptionMsg = "删除失败：数据违反主外键约束！";
+			}
+			ajaxMsg = new AjaxMsg(String.valueOf(HttpStatus.BAD_REQUEST), exceptionMsg);
+		}
+		return ajaxMsg;
 	}
 
 	@RequiresPermissions("ele:bizTransitPayinfo:view")
@@ -128,7 +164,7 @@ public class BizTransitPayinfoController extends BaseController {
 					failureMsg.append("导入失败：");
 					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");
 					for (String message : messageList) {
-						failureMsg.append(message + "; ");
+						failureMsg.append(message+"; ");
 						failureNum++;
 					}
 				} catch (Exception ex) {
@@ -136,7 +172,7 @@ public class BizTransitPayinfoController extends BaseController {
 					if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
 						exceptionMsg = "导入数据违反主外键约束！";
 					}
-					failureMsg.append("导入失败：" + exceptionMsg);
+					failureMsg.append("导入失败：" + InitImportData.getPrimaryValue(bizTransitPayinfo) + "=>" + exceptionMsg +"; ");
 				}
 			}
 			if (failureNum>0){

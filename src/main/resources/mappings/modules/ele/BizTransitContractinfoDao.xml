@@ -4,8 +4,8 @@
     
 	<sql id="bizTransitContractinfoColumns">
 		a.id AS "id",
-		a.tconsitename AS "tconsitename",
 		a.tconsitenum AS "tconsitenum",
+		a.tconsitename AS "tconsitename",
 		a.tconpa AS "tconpa",
 		a.tconstartdate AS "tconstartdate",
 		a.tconenddate AS "tconenddate",
@@ -15,8 +15,7 @@
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizTransitContractinfoJoins">
@@ -36,12 +35,12 @@
 		FROM biz_transit_contractinfo a
 		<include refid="bizTransitContractinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="tconsitename != null and tconsitename != ''">
-				AND a.tconsitename = #{tconsitename}
-			</if>
+			
 			<if test="tconsitenum != null and tconsitenum != ''">
 				AND a.tconsitenum = #{tconsitenum}
+			</if>
+			<if test="tconsitename != null and tconsitename != ''">
+				AND a.tconsitename = #{tconsitename}
 			</if>
 			<if test="tconpa != null and tconpa != ''">
 				AND a.tconpa LIKE 
@@ -69,7 +68,7 @@
 		FROM biz_transit_contractinfo a
 		<include refid="bizTransitContractinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -84,8 +83,8 @@
 	<insert id="insert">
 		INSERT INTO biz_transit_contractinfo(
 			id,
-			tconsitename,
 			tconsitenum,
+			tconsitename,
 			tconpa,
 			tconstartdate,
 			tconenddate,
@@ -95,12 +94,11 @@
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
-			#{tconsitename},
 			#{tconsitenum},
+			#{tconsitename},
 			#{tconpa},
 			#{tconstartdate},
 			#{tconenddate},
@@ -110,15 +108,14 @@
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE biz_transit_contractinfo SET 	
-			tconsitename = #{tconsitename},
 			tconsitenum = #{tconsitenum},
+			tconsitename = #{tconsitename},
 			tconpa = #{tconpa},
 			tconstartdate = #{tconstartdate},
 			tconenddate = #{tconenddate},
@@ -131,8 +128,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_transit_contractinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_transit_contractinfo
 		WHERE id = #{id}
 	</update>
 	

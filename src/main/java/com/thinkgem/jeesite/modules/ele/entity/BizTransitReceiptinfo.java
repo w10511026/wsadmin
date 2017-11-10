@@ -11,13 +11,13 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 转供回款信息Entity
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	
 	private static final long serialVersionUID = 1L;
-	private String tcoperator;		// 运营商
 	private String tcaccnum;		// 用电户号
+	private String tcoperator;		// 运营商
 	private String tcsitenum;		// 站点编码
 	private Date tcpaydate;		// 缴费日期
 	private Date tcrecdate;		// 回款日期
@@ -57,16 +57,6 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 		super(id);
 	}
 
-	@Length(min=1, max=20, message="运营商长度必须介于 1 和 20 之间")
-	@ExcelField(title="运营商", align=2, sort=10)
-	public String getTcoperator() {
-		return tcoperator;
-	}
-
-	public void setTcoperator(String tcoperator) {
-		this.tcoperator = tcoperator;
-	}
-	
 	@Length(min=1, max=15, message="用电户号长度必须介于 1 和 15 之间")
 	@ExcelField(title="用电户号", align=2, sort=10)
 	public String getTcaccnum() {
@@ -75,6 +65,16 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 
 	public void setTcaccnum(String tcaccnum) {
 		this.tcaccnum = tcaccnum;
+	}
+	
+	@Length(min=1, max=20, message="运营商长度必须介于 1 和 20 之间")
+	@ExcelField(title="运营商", align=2, sort=10)
+	public String getTcoperator() {
+		return tcoperator;
+	}
+
+	public void setTcoperator(String tcoperator) {
+		this.tcoperator = tcoperator;
 	}
 	
 	@Length(min=1, max=30, message="站点编码长度必须介于 1 和 30 之间")

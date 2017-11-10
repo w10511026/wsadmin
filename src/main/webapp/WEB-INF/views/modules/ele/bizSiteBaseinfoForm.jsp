@@ -34,16 +34,16 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">区县：</label>
+			<label class="control-label">站址编码：</label>
 			<div class="controls">
-				<form:input path="sidistrict" htmlEscape="false" maxlength="6" class="input-xlarge required"/>
+				<form:input path="sisitenum" htmlEscape="false" maxlength="30" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">站址编码：</label>
+			<label class="control-label">区县：</label>
 			<div class="controls">
-				<form:input path="sisitenum" htmlEscape="false" maxlength="30" class="input-xlarge required"/>
+				<form:input path="sidistrict" htmlEscape="false" maxlength="6" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

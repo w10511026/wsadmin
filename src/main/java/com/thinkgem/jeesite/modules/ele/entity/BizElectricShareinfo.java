@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 电流分摊信息Entity
  * @author ws
- * @version 2017-11-08
+ * @version 2017-11-09
  */
 public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	

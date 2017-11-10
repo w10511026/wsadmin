@@ -4,8 +4,8 @@
     
 	<sql id="bizTransitReceiptinfoColumns">
 		a.id AS "id",
-		a.tcoperator AS "tcoperator",
 		a.tcaccnum AS "tcaccnum",
+		a.tcoperator AS "tcoperator",
 		a.tcsitenum AS "tcsitenum",
 		a.tcpaydate AS "tcpaydate",
 		a.tcrecdate AS "tcrecdate",
@@ -35,8 +35,7 @@
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizTransitReceiptinfoJoins">
@@ -56,12 +55,12 @@
 		FROM biz_transit_receiptinfo a
 		<include refid="bizTransitReceiptinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="tcoperator != null and tcoperator != ''">
-				AND a.tcoperator = #{tcoperator}
-			</if>
+			
 			<if test="tcaccnum != null and tcaccnum != ''">
 				AND a.tcaccnum = #{tcaccnum}
+			</if>
+			<if test="tcoperator != null and tcoperator != ''">
+				AND a.tcoperator = #{tcoperator}
 			</if>
 			<if test="tcsitenum != null and tcsitenum != ''">
 				AND a.tcsitenum = #{tcsitenum}
@@ -89,7 +88,7 @@
 		FROM biz_transit_receiptinfo a
 		<include refid="bizTransitReceiptinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -104,8 +103,8 @@
 	<insert id="insert">
 		INSERT INTO biz_transit_receiptinfo(
 			id,
-			tcoperator,
 			tcaccnum,
+			tcoperator,
 			tcsitenum,
 			tcpaydate,
 			tcrecdate,
@@ -135,12 +134,11 @@
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
-			#{tcoperator},
 			#{tcaccnum},
+			#{tcoperator},
 			#{tcsitenum},
 			#{tcpaydate},
 			#{tcrecdate},
@@ -170,15 +168,14 @@
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE biz_transit_receiptinfo SET 	
-			tcoperator = #{tcoperator},
 			tcaccnum = #{tcaccnum},
+			tcoperator = #{tcoperator},
 			tcsitenum = #{tcsitenum},
 			tcpaydate = #{tcpaydate},
 			tcrecdate = #{tcrecdate},
@@ -211,8 +208,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_transit_receiptinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_transit_receiptinfo
 		WHERE id = #{id}
 	</update>
 	

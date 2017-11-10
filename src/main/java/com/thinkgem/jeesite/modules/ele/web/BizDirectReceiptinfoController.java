@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -73,19 +70,35 @@ public class BizDirectReceiptinfoController extends BaseController {
 	@RequiresPermissions("ele:bizDirectReceiptinfo:edit")
 	@RequestMapping(value = "save")
 	public String save(BizDirectReceiptinfo bizDirectReceiptinfo, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, bizDirectReceiptinfo)){
-			return form(bizDirectReceiptinfo, model);
+		try {
+			if (!beanValidator(model, bizDirectReceiptinfo)){
+				return form(bizDirectReceiptinfo, model);
+			}
+			bizDirectReceiptinfoService.save(bizDirectReceiptinfo);
+			addMessage(redirectAttributes, "保存直供回款信息成功");
+		} catch (Exception ex) {
+			String exceptionMsg = ex.getMessage();
+			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+				exceptionMsg = "导入失败：数据违反主外键约束！";
+			}
+			addMessage(redirectAttributes, exceptionMsg);
 		}
-		bizDirectReceiptinfoService.save(bizDirectReceiptinfo);
-		addMessage(redirectAttributes, "保存直供回款信息成功");
 		return "redirect:"+Global.getAdminPath()+"/ele/bizDirectReceiptinfo/?repage";
 	}
 	
 	@RequiresPermissions("ele:bizDirectReceiptinfo:edit")
 	@RequestMapping(value = "delete")
 	public String delete(BizDirectReceiptinfo bizDirectReceiptinfo, RedirectAttributes redirectAttributes) {
-		bizDirectReceiptinfoService.delete(bizDirectReceiptinfo);
-		addMessage(redirectAttributes, "删除直供回款信息成功");
+		try {
+			bizDirectReceiptinfoService.delete(bizDirectReceiptinfo);
+			addMessage(redirectAttributes, "删除直供回款信息成功");
+		} catch (Exception ex) {
+			String exceptionMsg = ex.getMessage();
+			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+				exceptionMsg = "删除失败：数据违反主外键约束！";
+			}
+			addMessage(redirectAttributes, exceptionMsg);
+		}
 		return "redirect:"+Global.getAdminPath()+"/ele/bizDirectReceiptinfo/?repage";
 	}
 
@@ -94,10 +107,18 @@ public class BizDirectReceiptinfoController extends BaseController {
 	@ResponseBody
 	public AjaxMsg deleteBatch(@RequestParam("ids[]")List<String> ids) {
 		AjaxMsg ajaxMsg = new AjaxMsg(String.valueOf(HttpStatus.OK), "删除直供回款信息成功");
-		for (String id : ids) {
-			BizDirectReceiptinfo bizDirectReceiptinfo = new BizDirectReceiptinfo();
-			bizDirectReceiptinfo.setId(id);
-			bizDirectReceiptinfoService.delete(bizDirectReceiptinfo);
+		try {
+			for (String id : ids) {
+				BizDirectReceiptinfo bizDirectReceiptinfo = new BizDirectReceiptinfo();
+				bizDirectReceiptinfo.setId(id);
+				bizDirectReceiptinfoService.delete(bizDirectReceiptinfo);
+			}
+		} catch (Exception ex) {
+			String exceptionMsg = ex.getMessage();
+			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+				exceptionMsg = "删除失败：数据违反主外键约束！";
+			}
+			ajaxMsg = new AjaxMsg(String.valueOf(HttpStatus.BAD_REQUEST), exceptionMsg);
 		}
 		return ajaxMsg;
 	}

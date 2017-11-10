@@ -4,8 +4,8 @@
     
 	<sql id="bizSiteBaseinfoColumns">
 		a.id AS "id",
-		a.sidistrict AS "sidistrict",
 		a.sisitenum AS "sisitenum",
+		a.sidistrict AS "sidistrict",
 		a.sisitename AS "sisitename",
 		a.sipropertyunit AS "sipropertyunit",
 		a.siroomstyle AS "siroomstyle",
@@ -16,8 +16,7 @@
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
-		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag"
+		a.update_date AS "updateDate"
 	</sql>
 	
 	<sql id="bizSiteBaseinfoJoins">
@@ -37,12 +36,12 @@
 		FROM biz_site_baseinfo a
 		<include refid="bizSiteBaseinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="sidistrict != null and sidistrict != ''">
-				AND a.sidistrict = #{sidistrict}
-			</if>
+			
 			<if test="sisitenum != null and sisitenum != ''">
 				AND a.sisitenum = #{sisitenum}
+			</if>
+			<if test="sidistrict != null and sidistrict != ''">
+				AND a.sidistrict = #{sidistrict}
 			</if>
 			<if test="sisitename != null and sisitename != ''">
 				AND a.sisitename = #{sisitename}
@@ -64,7 +63,7 @@
 		FROM biz_site_baseinfo a
 		<include refid="bizSiteBaseinfoJoins"/>
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -79,8 +78,8 @@
 	<insert id="insert">
 		INSERT INTO biz_site_baseinfo(
 			id,
-			sidistrict,
 			sisitenum,
+			sidistrict,
 			sisitename,
 			sipropertyunit,
 			siroomstyle,
@@ -91,12 +90,11 @@
 			create_by,
 			create_date,
 			update_by,
-			update_date,
-			del_flag
+			update_date
 		) VALUES (
 			#{id},
-			#{sidistrict},
 			#{sisitenum},
+			#{sidistrict},
 			#{sisitename},
 			#{sipropertyunit},
 			#{siroomstyle},
@@ -107,15 +105,14 @@
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
-			#{updateDate},
-			#{delFlag}
+			#{updateDate}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE biz_site_baseinfo SET 	
-			sidistrict = #{sidistrict},
 			sisitenum = #{sisitenum},
+			sidistrict = #{sidistrict},
 			sisitename = #{sisitename},
 			sipropertyunit = #{sipropertyunit},
 			siroomstyle = #{siroomstyle},
@@ -129,8 +126,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE biz_site_baseinfo SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		DELETE FROM biz_site_baseinfo
 		WHERE id = #{id}
 	</update>
 	

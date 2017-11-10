@@ -1,5 +1,6 @@
 package com.thinkgem.jeesite.modules.ele.util;
 
+import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.modules.ele.entity.BizDirectPayinfo;
 
 import java.io.File;
@@ -19,6 +20,41 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class InitImportData {
+
+    public static String getPrimaryValue(Object model) {
+        String value = "";
+        List<Class<?>> classList = getClasses("com.thinkgem.jeesite.modules.ele.entity");
+        for (Class<?> aClass : classList) {
+            if (aClass == model.getClass()) {
+                Field[] field = model.getClass().getDeclaredFields();
+                try {
+                    for (int j = 0; j < field.length; j++) { // 遍历所有属性
+                        if (j == 1) {
+                            String name = field[j].getName(); // 获取属性的名字
+                            name = name.substring(0, 1).toUpperCase() + name.substring(1); // 将属性的首字符大写，方便构造get，set方法
+                            String type = field[j].getGenericType().toString(); // 获取属性的类型
+                            if (type.equals("class java.lang.String")) { // 如果type是类类型，则前面包含"class "，后面跟类名
+                                Method m = model.getClass().getMethod("get" + name);
+                                value = (String) m.invoke(model); // 调用getter方法获取属性值
+                                break;
+                            }
+                        }
+                    }
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return value;
+    }
 
     public static Object getImportData(Object model) {
         List<Class<?>> classList = getClasses("com.thinkgem.jeesite.modules.ele.entity");
@@ -59,7 +95,7 @@ public class InitImportData {
                             Date value = (Date) m.invoke(model);
                             if (value == null) {
                                 m = model.getClass().getMethod("set" + name, Date.class);
-                                m.invoke(model, new Date());
+                                m.invoke(model, DateUtils.parseDate("2017-01-01"));
                             }
                         }
                         if (type.equals("class java.lang.Double")) {
