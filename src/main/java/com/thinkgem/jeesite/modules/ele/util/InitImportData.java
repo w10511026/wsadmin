@@ -21,6 +21,8 @@ import java.util.jar.JarFile;
 
 public class InitImportData {
 
+    public static int EXCEL_SORT_NUMBER = 0;
+
     public static String getPrimaryValue(Object model) {
         String value = "";
         List<Class<?>> classList = getClasses("com.thinkgem.jeesite.modules.ele.entity");

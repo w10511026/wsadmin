@@ -3,6 +3,7 @@ package com.thinkgem.jeesite.modules.gen.entity;
 
 import java.util.List;
 
+import com.thinkgem.jeesite.modules.ele.util.InitImportData;
 import org.hibernate.validator.constraints.Length;
 
 import com.google.common.collect.Lists;
@@ -248,12 +249,13 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 		}
 		return sss;
 	}
-	
+
 	/**
 	 * 获取列注解列表
 	 * @return
 	 */
 	public List<String> getAnnotationList(){
+		InitImportData.EXCEL_SORT_NUMBER = InitImportData.EXCEL_SORT_NUMBER + 1;
 		List<String> list = Lists.newArrayList();
 		// 导入Jackson注解
 		if ("This".equals(getJavaType())){
@@ -274,7 +276,7 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 			list.add("org.hibernate.validator.constraints.Length(min=0, max="+getDataLength()
 					+", message=\""+getComments()+"长度必须介于 0 和 "+getDataLength()+" 之间\")");
 		}
-		list.add("com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField(title=\"" + getNameAndComments().split(":")[1].trim() + "\", align=2, sort=" + 10 + ")");
+		list.add("com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField(title=\"" + getNameAndComments().split(":")[1].trim() + "\", align=2, sort=" + InitImportData.EXCEL_SORT_NUMBER + ")");
 		return list;
 	}
 	

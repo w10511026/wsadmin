@@ -4,13 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
-import java.util.List;
+import java.util.*;
+
 import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
 import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
+import com.thinkgem.jeesite.modules.ele.entity.BizSiteMeterinfo;
+import com.thinkgem.jeesite.modules.ele.service.BizSiteMeterinfoService;
 import com.thinkgem.jeesite.modules.ele.util.InitImportData;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +43,8 @@ public class BizDirectReceiptinfoController extends BaseController {
 
 	@Autowired
 	private BizDirectReceiptinfoService bizDirectReceiptinfoService;
+	@Autowired
+	private BizSiteMeterinfoService bizSiteMeterinfoService;
 	
 	@ModelAttribute
 	public BizDirectReceiptinfo get(@RequestParam(required=false) String id) {
@@ -152,13 +158,28 @@ public class BizDirectReceiptinfoController extends BaseController {
 			List<BizDirectReceiptinfo> list = ei.getDataList(BizDirectReceiptinfo.class);
 			for (BizDirectReceiptinfo bizDirectReceiptinfo : list) {
 				try {
-					if (true) {
-						BeanValidators.validateWithException(validator, bizDirectReceiptinfo);
-						bizDirectReceiptinfoService.save(bizDirectReceiptinfo);
-						successNum++;
-					} else {
-						failureMsg.append("<br/>");
-						failureNum++;
+					boolean isTrue = false;
+					BizSiteMeterinfo bizSiteMeterinfo = new BizSiteMeterinfo();
+					bizSiteMeterinfo.setAmnum(bizDirectReceiptinfo.getScaccnum());
+					List<BizSiteMeterinfo> bizSiteMeterinfoList = bizSiteMeterinfoService.findList(bizSiteMeterinfo);
+					List<Date> dateList = new ArrayList<>();
+					for (BizSiteMeterinfo siteMeterinfo : bizSiteMeterinfoList) {
+						dateList.add(siteMeterinfo.getAmstartdate());
+					}
+					if (CollectionUtils.isNotEmpty(dateList)) {
+						Date maxDate = Collections.max(dateList);
+						Date minDate = Collections.min(dateList);
+						if (bizDirectReceiptinfo.getSprecdate().getTime() > minDate.getTime() && bizDirectReceiptinfo.getSprecdate().getTime() < maxDate.getTime()) {
+							isTrue = true;
+						}
+						if (isTrue) {
+							BeanValidators.validateWithException(validator, bizDirectReceiptinfo);
+							bizDirectReceiptinfoService.save(bizDirectReceiptinfo);
+							successNum++;
+						} else {
+							failureMsg.append("<br/>");
+							failureNum++;
+						}
 					}
 				} catch (ConstraintViolationException ex) {
 					failureMsg.append("导入失败：");
