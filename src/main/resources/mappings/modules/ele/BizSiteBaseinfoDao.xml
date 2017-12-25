@@ -4,8 +4,8 @@
     
 	<sql id="bizSiteBaseinfoColumns">
 		a.id AS "id",
-		a.sisitenum AS "sisitenum",
 		a.sidistrict AS "sidistrict",
+		a.sisitenum AS "sisitenum",
 		a.sisitename AS "sisitename",
 		a.sipropertyunit AS "sipropertyunit",
 		a.siroomstyle AS "siroomstyle",
@@ -37,11 +37,11 @@
 		<include refid="bizSiteBaseinfoJoins"/>
 		<where>
 			
-			<if test="sisitenum != null and sisitenum != ''">
-				AND a.sisitenum = #{sisitenum}
-			</if>
 			<if test="sidistrict != null and sidistrict != ''">
 				AND a.sidistrict = #{sidistrict}
+			</if>
+			<if test="sisitenum != null and sisitenum != ''">
+				AND a.sisitenum = #{sisitenum}
 			</if>
 			<if test="sisitename != null and sisitename != ''">
 				AND a.sisitename = #{sisitename}
@@ -78,8 +78,8 @@
 	<insert id="insert">
 		INSERT INTO biz_site_baseinfo(
 			id,
-			sisitenum,
 			sidistrict,
+			sisitenum,
 			sisitename,
 			sipropertyunit,
 			siroomstyle,
@@ -93,8 +93,8 @@
 			update_date
 		) VALUES (
 			#{id},
-			#{sisitenum},
 			#{sidistrict},
+			#{sisitenum},
 			#{sisitename},
 			#{sipropertyunit},
 			#{siroomstyle},
@@ -111,8 +111,8 @@
 	
 	<update id="update">
 		UPDATE biz_site_baseinfo SET 	
-			sisitenum = #{sisitenum},
 			sidistrict = #{sidistrict},
+			sisitenum = #{sisitenum},
 			sisitename = #{sisitename},
 			sipropertyunit = #{sipropertyunit},
 			siroomstyle = #{siroomstyle},

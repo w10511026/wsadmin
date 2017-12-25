@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizSiteBaseinfoService;
 /**
  * 站址基础信息Controller
  * @author ws
- * @version 2017-11-09
+ * @version 2017-11-13
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizSiteBaseinfo")
@@ -173,6 +173,7 @@ public class BizSiteBaseinfoController extends BaseController {
 						exceptionMsg = "导入数据违反主外键约束！";
 					}
 					failureMsg.append("导入失败：" + InitImportData.getPrimaryValue(bizSiteBaseinfo) + "=>" + exceptionMsg +"; ");
+					failureNum++;
 				}
 			}
 			if (failureNum>0){

@@ -46,11 +46,11 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>站址编码：</label>
-				<form:input path="sisitenum" htmlEscape="false" maxlength="30" class="input-medium"/>
-			</li>
 			<li><label>区县：</label>
 				<form:input path="sidistrict" htmlEscape="false" maxlength="6" class="input-medium"/>
+			</li>
+			<li><label>站址编码：</label>
+				<form:input path="sisitenum" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>
 			<li><label>站址名称：</label>
 				<form:input path="sisitename" htmlEscape="false" maxlength="30" class="input-medium"/>
@@ -69,8 +69,8 @@
 		<thead>
 			<tr>
 				<th hidden></th>
-				<th>站址编码</th>
 				<th>区县</th>
+				<th>站址编码</th>
 				<th>站址名称</th>
 				<th>原产权单位</th>
 				<th>机房类型</th>
@@ -86,10 +86,10 @@
 			<tr>
 				<td hidden><span id="${bizSiteBaseinfo.id}ids">${bizSiteBaseinfo.id}</span></td>
 				<td><a href="${ctx}/ele/bizSiteBaseinfo/form?id=${bizSiteBaseinfo.id}">
-					${bizSiteBaseinfo.sisitenum}
+					${bizSiteBaseinfo.sidistrict}
 				</a></td>
 				<td>
-					${bizSiteBaseinfo.sidistrict}
+					${bizSiteBaseinfo.sisitenum}
 				</td>
 				<td>
 					${bizSiteBaseinfo.sisitename}

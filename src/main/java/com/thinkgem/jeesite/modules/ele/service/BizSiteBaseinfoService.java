@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.ele.dao.BizSiteBaseinfoDao;
 /**
  * 站址基础信息Service
  * @author ws
- * @version 2017-11-09
+ * @version 2017-11-13
  */
 @Service
 @Transactional(readOnly = true)
