@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitPayinfoService;
 /**
  * 转供缴费信息Controller
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitPayinfo")

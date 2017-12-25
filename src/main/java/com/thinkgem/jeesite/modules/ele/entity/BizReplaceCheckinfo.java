@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 代维巡检信息Entity
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	
@@ -36,7 +36,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	}
 
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=10)
+	@ExcelField(title="站址编码", align=2, sort=15)
 	public String getInspsitenum() {
 		return inspsitenum;
 	}
@@ -47,7 +47,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="巡检日期不能为空")
-	@ExcelField(title="巡检日期", align=2, sort=10)
+	@ExcelField(title="巡检日期", align=2, sort=16)
 	public Date getInspdate() {
 		return inspdate;
 	}
@@ -56,7 +56,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 		this.inspdate = inspdate;
 	}
 	
-	@ExcelField(title="抄表读数", align=2, sort=10)
+	@ExcelField(title="抄表读数", align=2, sort=17)
 	public Double getInspdisplay() {
 		return inspdisplay;
 	}
@@ -66,7 +66,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	}
 	
 	@NotNull(message="移动电流不能为空")
-	@ExcelField(title="移动电流", align=2, sort=10)
+	@ExcelField(title="移动电流", align=2, sort=18)
 	public Double getInspcmq() {
 		return inspcmq;
 	}
@@ -76,7 +76,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	}
 	
 	@NotNull(message="电信电流不能为空")
-	@ExcelField(title="电信电流", align=2, sort=10)
+	@ExcelField(title="电信电流", align=2, sort=19)
 	public Double getInspctq() {
 		return inspctq;
 	}
@@ -86,7 +86,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	}
 	
 	@NotNull(message="联通电流不能为空")
-	@ExcelField(title="联通电流", align=2, sort=10)
+	@ExcelField(title="联通电流", align=2, sort=20)
 	public Double getInspcuq() {
 		return inspcuq;
 	}
@@ -96,7 +96,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	}
 	
 	@Length(min=0, max=15, message="巡检人员长度必须介于 0 和 15 之间")
-	@ExcelField(title="巡检人员", align=2, sort=10)
+	@ExcelField(title="巡检人员", align=2, sort=21)
 	public String getInsppeople() {
 		return insppeople;
 	}
@@ -106,7 +106,7 @@ public class BizReplaceCheckinfo extends DataEntity<BizReplaceCheckinfo> {
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=10)
+	@ExcelField(title="备注", align=2, sort=22)
 	public String getInspremarks() {
 		return inspremarks;
 	}

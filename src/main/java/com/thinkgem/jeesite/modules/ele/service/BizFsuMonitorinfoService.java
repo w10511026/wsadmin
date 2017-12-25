@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.ele.dao.BizFsuMonitorinfoDao;
 /**
  * FSU监控信息Service
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 @Service
 @Transactional(readOnly = true)

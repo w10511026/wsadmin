@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitContractinfoService;
 /**
  * 转供合同信息Controller
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitContractinfo")

@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 转供缴费信息Entity
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	
@@ -49,7 +49,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 
 	@Length(min=1, max=15, message="户号长度必须介于 1 和 15 之间")
-	@ExcelField(title="户号", align=2, sort=10)
+	@ExcelField(title="户号", align=2, sort=134)
 	public String getTpaccnum() {
 		return tpaccnum;
 	}
@@ -60,7 +60,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="缴费日期不能为空")
-	@ExcelField(title="缴费日期", align=2, sort=10)
+	@ExcelField(title="缴费日期", align=2, sort=135)
 	public Date getTppaydate() {
 		return tppaydate;
 	}
@@ -71,7 +71,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="起始日期不能为空")
-	@ExcelField(title="起始日期", align=2, sort=10)
+	@ExcelField(title="起始日期", align=2, sort=136)
 	public Date getTpstartdate() {
 		return tpstartdate;
 	}
@@ -82,7 +82,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="截止日期不能为空")
-	@ExcelField(title="截止日期", align=2, sort=10)
+	@ExcelField(title="截止日期", align=2, sort=137)
 	public Date getTpenddate() {
 		return tpenddate;
 	}
@@ -92,7 +92,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="起始读数不能为空")
-	@ExcelField(title="起始读数", align=2, sort=10)
+	@ExcelField(title="起始读数", align=2, sort=138)
 	public Double getTpstartdisplay() {
 		return tpstartdisplay;
 	}
@@ -102,7 +102,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="截止读数不能为空")
-	@ExcelField(title="截止读数", align=2, sort=10)
+	@ExcelField(title="截止读数", align=2, sort=139)
 	public Double getTpenddisplay() {
 		return tpenddisplay;
 	}
@@ -112,7 +112,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="老表起始读数不能为空")
-	@ExcelField(title="老表起始读数", align=2, sort=10)
+	@ExcelField(title="老表起始读数", align=2, sort=140)
 	public Double getTpprestartdisplay() {
 		return tpprestartdisplay;
 	}
@@ -122,7 +122,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="老表截止读数不能为空")
-	@ExcelField(title="老表截止读数", align=2, sort=10)
+	@ExcelField(title="老表截止读数", align=2, sort=141)
 	public Double getTpperenddisplay() {
 		return tpperenddisplay;
 	}
@@ -132,7 +132,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="倍率不能为空")
-	@ExcelField(title="倍率", align=2, sort=10)
+	@ExcelField(title="倍率", align=2, sort=142)
 	public Integer getTprate() {
 		return tprate;
 	}
@@ -142,7 +142,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="损耗不能为空")
-	@ExcelField(title="损耗", align=2, sort=10)
+	@ExcelField(title="损耗", align=2, sort=143)
 	public Double getTploss() {
 		return tploss;
 	}
@@ -151,7 +151,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 		this.tploss = tploss;
 	}
 	
-	@ExcelField(title="计费电量", align=2, sort=10)
+	@ExcelField(title="计费电量", align=2, sort=144)
 	public Double getTptotalq() {
 		return tptotalq;
 	}
@@ -160,7 +160,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 		this.tptotalq = tptotalq;
 	}
 	
-	@ExcelField(title="电费单价", align=2, sort=10)
+	@ExcelField(title="电费单价", align=2, sort=145)
 	public Double getTpbillprice() {
 		return tpbillprice;
 	}
@@ -170,7 +170,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="票面金额不能为空")
-	@ExcelField(title="票面金额", align=2, sort=10)
+	@ExcelField(title="票面金额", align=2, sort=146)
 	public Double getTpmainc() {
 		return tpmainc;
 	}
@@ -180,7 +180,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@NotNull(message="代开税金不能为空")
-	@ExcelField(title="代开税金", align=2, sort=10)
+	@ExcelField(title="代开税金", align=2, sort=147)
 	public Double getTpdktax() {
 		return tpdktax;
 	}
@@ -190,7 +190,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@Length(min=1, max=20, message="票据类型（代开）长度必须介于 1 和 20 之间")
-	@ExcelField(title="票据类型（代开）", align=2, sort=10)
+	@ExcelField(title="票据类型（代开）", align=2, sort=148)
 	public String getTpbilltype() {
 		return tpbilltype;
 	}
@@ -199,7 +199,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 		this.tpbilltype = tpbilltype;
 	}
 	
-	@ExcelField(title="总金额", align=2, sort=10)
+	@ExcelField(title="总金额", align=2, sort=149)
 	public Double getTptotalc() {
 		return tptotalc;
 	}
@@ -209,7 +209,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@Length(min=0, max=20, message="供电方名称长度必须介于 0 和 20 之间")
-	@ExcelField(title="供电方名称", align=2, sort=10)
+	@ExcelField(title="供电方名称", align=2, sort=150)
 	public String getTpsupplier() {
 		return tpsupplier;
 	}
@@ -219,7 +219,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@ExcelField(title="核销日期", align=2, sort=10)
+	@ExcelField(title="核销日期", align=2, sort=151)
 	public Date getTpdestdate() {
 		return tpdestdate;
 	}
@@ -229,7 +229,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@Length(min=0, max=30, message="报账单号长度必须介于 0 和 30 之间")
-	@ExcelField(title="报账单号", align=2, sort=10)
+	@ExcelField(title="报账单号", align=2, sort=152)
 	public String getTpbillnum() {
 		return tpbillnum;
 	}
@@ -239,7 +239,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@Length(min=0, max=35, message="支付单号长度必须介于 0 和 35 之间")
-	@ExcelField(title="支付单号", align=2, sort=10)
+	@ExcelField(title="支付单号", align=2, sort=153)
 	public String getTppaynum() {
 		return tppaynum;
 	}
@@ -249,7 +249,7 @@ public class BizTransitPayinfo extends DataEntity<BizTransitPayinfo> {
 	}
 	
 	@Length(min=0, max=35, message="核销单号长度必须介于 0 和 35 之间")
-	@ExcelField(title="核销单号", align=2, sort=10)
+	@ExcelField(title="核销单号", align=2, sort=154)
 	public String getTpdestnum() {
 		return tpdestnum;
 	}

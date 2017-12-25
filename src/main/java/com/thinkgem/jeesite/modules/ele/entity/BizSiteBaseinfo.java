@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 站址基础信息Entity
  * @author ws
- * @version 2017-11-13
+ * @version 2017-12-25
  */
 public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	
@@ -34,7 +34,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 
 	@Length(min=1, max=6, message="区县长度必须介于 1 和 6 之间")
-	@ExcelField(title="区县", align=2, sort=11)
+	@ExcelField(title="区县", align=2, sort=266)
 	public String getSidistrict() {
 		return sidistrict;
 	}
@@ -44,7 +44,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=10)
+	@ExcelField(title="站址编码", align=2, sort=267)
 	public String getSisitenum() {
 		return sisitenum;
 	}
@@ -54,7 +54,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站址名称长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址名称", align=2, sort=12)
+	@ExcelField(title="站址名称", align=2, sort=268)
 	public String getSisitename() {
 		return sisitename;
 	}
@@ -64,7 +64,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=6, message="原产权单位长度必须介于 1 和 6 之间")
-	@ExcelField(title="原产权单位", align=2, sort=13)
+	@ExcelField(title="原产权单位", align=2, sort=269)
 	public String getSipropertyunit() {
 		return sipropertyunit;
 	}
@@ -74,7 +74,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=1, max=20, message="机房类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="机房类型", align=2, sort=14)
+	@ExcelField(title="机房类型", align=2, sort=270)
 	public String getSiroomstyle() {
 		return siroomstyle;
 	}
@@ -84,7 +84,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@Length(min=0, max=6, message="保留站信息长度必须介于 0 和 6 之间")
-	@ExcelField(title="保留站信息", align=2, sort=15)
+	@ExcelField(title="保留站信息", align=2, sort=271)
 	public String getSiretain() {
 		return siretain;
 	}
@@ -94,7 +94,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@ExcelField(title="移动起租日期", align=2, sort=16)
+	@ExcelField(title="移动起租日期", align=2, sort=272)
 	public Date getSicmq() {
 		return sicmq;
 	}
@@ -104,7 +104,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@ExcelField(title="电信起租日期", align=2, sort=17)
+	@ExcelField(title="电信起租日期", align=2, sort=273)
 	public Date getSictq() {
 		return sictq;
 	}
@@ -114,7 +114,7 @@ public class BizSiteBaseinfo extends DataEntity<BizSiteBaseinfo> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@ExcelField(title="联通起租日期", align=2, sort=18)
+	@ExcelField(title="联通起租日期", align=2, sort=274)
 	public Date getSicuq() {
 		return sicuq;
 	}

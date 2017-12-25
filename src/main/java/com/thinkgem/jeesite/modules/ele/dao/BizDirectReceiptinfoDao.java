@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizDirectReceiptinfo;
 /**
  * 直供回款信息DAO接口
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 @MyBatisDao
 public interface BizDirectReceiptinfoDao extends CrudDao<BizDirectReceiptinfo> {

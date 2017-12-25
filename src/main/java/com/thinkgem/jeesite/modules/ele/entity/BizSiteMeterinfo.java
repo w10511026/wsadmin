@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 表站对应信息Entity
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-25
  */
 public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	
@@ -30,7 +30,7 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	}
 
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=10)
+	@ExcelField(title="站址编码", align=2, sort=27)
 	public String getAmsitenum() {
 		return amsitenum;
 	}
@@ -40,7 +40,7 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	}
 	
 	@Length(min=1, max=30, message="电表户号长度必须介于 1 和 30 之间")
-	@ExcelField(title="电表户号", align=2, sort=10)
+	@ExcelField(title="电表户号", align=2, sort=28)
 	public String getAmnum() {
 		return amnum;
 	}
@@ -51,7 +51,7 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="起始日期不能为空")
-	@ExcelField(title="起始日期", align=2, sort=10)
+	@ExcelField(title="起始日期", align=2, sort=29)
 	public Date getAmstartdate() {
 		return amstartdate;
 	}
@@ -61,7 +61,7 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=10)
+	@ExcelField(title="备注", align=2, sort=30)
 	public String getAmremarks() {
 		return amremarks;
 	}
