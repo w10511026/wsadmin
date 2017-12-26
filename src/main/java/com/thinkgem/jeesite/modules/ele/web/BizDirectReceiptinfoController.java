@@ -164,7 +164,7 @@ public class BizDirectReceiptinfoController extends BaseController {
 					List<BizSiteMeterinfo> bizSiteMeterinfoList = bizSiteMeterinfoService.findList(bizSiteMeterinfo);
 					List<Date> dateList = new ArrayList<>();
 					for (BizSiteMeterinfo siteMeterinfo : bizSiteMeterinfoList) {
-						dateList.add(siteMeterinfo.getAmstartdate());
+
 					}
 					if (CollectionUtils.isNotEmpty(dateList)) {
 						Date maxDate = Collections.max(dateList);

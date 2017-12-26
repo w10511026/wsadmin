@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizSiteMeterinfo;
 /**
  * 表站对应信息DAO接口
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @MyBatisDao
 public interface BizSiteMeterinfoDao extends CrudDao<BizSiteMeterinfo> {

@@ -48,11 +48,18 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">起始日期：</label>
+			<label class="control-label">更新日期：</label>
 			<div class="controls">
-				<input name="amstartdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${bizSiteMeterinfo.amstartdate}" pattern="yyyy-MM-dd"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+				<input name="amupdatedate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
+					value="<fmt:formatDate value="${bizSiteMeterinfo.amupdatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">更新方式：</label>
+			<div class="controls">
+				<form:input path="amupdatemode" htmlEscape="false" maxlength="6" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizSiteMeterinfoService;
 /**
  * 表站对应信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizSiteMeterinfo")

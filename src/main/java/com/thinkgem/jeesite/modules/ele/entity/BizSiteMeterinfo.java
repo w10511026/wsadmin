@@ -11,14 +11,15 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 表站对应信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	
 	private static final long serialVersionUID = 1L;
 	private String amsitenum;		// 站址编码
 	private String amnum;		// 电表户号
-	private Date amstartdate;		// 起始日期
+	private Date amupdatedate;		// 更新日期
+	private String amupdatemode;		// 更新方式
 	private String amremarks;		// 备注
 	
 	public BizSiteMeterinfo() {
@@ -30,7 +31,7 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	}
 
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=27)
+	@ExcelField(title="站址编码", align=2, sort=6)
 	public String getAmsitenum() {
 		return amsitenum;
 	}
@@ -40,7 +41,7 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	}
 	
 	@Length(min=1, max=30, message="电表户号长度必须介于 1 和 30 之间")
-	@ExcelField(title="电表户号", align=2, sort=28)
+	@ExcelField(title="电表户号", align=2, sort=7)
 	public String getAmnum() {
 		return amnum;
 	}
@@ -50,18 +51,28 @@ public class BizSiteMeterinfo extends DataEntity<BizSiteMeterinfo> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message="起始日期不能为空")
-	@ExcelField(title="起始日期", align=2, sort=29)
-	public Date getAmstartdate() {
-		return amstartdate;
+	@NotNull(message="更新日期不能为空")
+	@ExcelField(title="更新日期", align=2, sort=8)
+	public Date getAmupdatedate() {
+		return amupdatedate;
 	}
 
-	public void setAmstartdate(Date amstartdate) {
-		this.amstartdate = amstartdate;
+	public void setAmupdatedate(Date amupdatedate) {
+		this.amupdatedate = amupdatedate;
+	}
+	
+	@Length(min=1, max=6, message="更新方式长度必须介于 1 和 6 之间")
+	@ExcelField(title="更新方式", align=2, sort=9)
+	public String getAmupdatemode() {
+		return amupdatemode;
+	}
+
+	public void setAmupdatemode(String amupdatemode) {
+		this.amupdatemode = amupdatemode;
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=30)
+	@ExcelField(title="备注", align=2, sort=10)
 	public String getAmremarks() {
 		return amremarks;
 	}

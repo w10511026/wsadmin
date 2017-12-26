@@ -14,6 +14,7 @@
 		a.sictq AS "sictq",
 		a.sicuq AS "sicuq",
 		a.create_by AS "createBy.id",
+		a.siremarks AS "siremarks",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate"
@@ -44,7 +45,13 @@
 				AND a.sisitenum = #{sisitenum}
 			</if>
 			<if test="sisitename != null and sisitename != ''">
-				AND a.sisitename = #{sisitename}
+				AND a.sisitename LIKE 
+					<if test="dbName == 'oracle'">'%'||#{sisitename}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{sisitename}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{sisitename},'%')</if>
+			</if>
+			<if test="siremarks != null and siremarks != ''">
+				AND a.siremarks = #{siremarks}
 			</if>
 		</where>
 		<choose>
@@ -88,6 +95,7 @@
 			sictq,
 			sicuq,
 			create_by,
+			siremarks,
 			create_date,
 			update_by,
 			update_date
@@ -103,6 +111,7 @@
 			#{sictq},
 			#{sicuq},
 			#{createBy.id},
+			#{siremarks},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate}
@@ -120,6 +129,7 @@
 			sicmq = #{sicmq},
 			sictq = #{sictq},
 			sicuq = #{sicuq},
+			siremarks = #{siremarks},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

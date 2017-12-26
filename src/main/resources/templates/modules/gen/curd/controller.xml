@@ -135,8 +135,8 @@ public class ${ClassName}Controller extends BaseController {
 	public String exportFile(${ClassName} ${className}, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "${functionNameSimple}"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<${ClassName}> page = ${className}Service.findPage(new Page<${ClassName}>(request, response, -1), ${className});
-			new ExportExcel("${functionNameSimple}", ${ClassName}.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<${ClassName}> list = ${className}Service.findList(${className});
+			new ExportExcel("${functionNameSimple}", ${ClassName}.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出${functionNameSimple}失败！失败信息："+e.getMessage());

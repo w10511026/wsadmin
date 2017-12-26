@@ -68,11 +68,10 @@
 				<th hidden></th>
 				<th>站址编码</th>
 				<th>电表户号</th>
-				<th>起始日期</th>
+				<th>更新日期</th>
+				<th>更新方式</th>
 				<th>备注</th>
-				<th>创建者</th>
-				<th>创建时间</th>
-				<th>更新者</th>
+				<th>更新时间</th>
 				<shiro:hasPermission name="ele:bizSiteMeterinfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -87,19 +86,16 @@
 					${bizSiteMeterinfo.amnum}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizSiteMeterinfo.amstartdate}" pattern="yyyy-MM-dd"/>
+					<fmt:formatDate value="${bizSiteMeterinfo.amupdatedate}" pattern="yyyy-MM-dd"/>
+				</td>
+				<td>
+					${bizSiteMeterinfo.amupdatemode}
 				</td>
 				<td>
 					${bizSiteMeterinfo.amremarks}
 				</td>
 				<td>
-					${bizSiteMeterinfo.createBy.id}
-				</td>
-				<td>
-					<fmt:formatDate value="${bizSiteMeterinfo.createDate}" pattern="yyyy-MM-dd"/>
-				</td>
-				<td>
-					${bizSiteMeterinfo.updateBy.id}
+					<fmt:formatDate value="${bizSiteMeterinfo.updateDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<shiro:hasPermission name="ele:bizSiteMeterinfo:edit"><td>
     				<a href="${ctx}/ele/bizSiteMeterinfo/form?id=${bizSiteMeterinfo.id}">修改</a>

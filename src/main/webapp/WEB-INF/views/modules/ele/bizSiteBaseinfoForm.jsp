@@ -32,11 +32,14 @@
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="bizSiteBaseinfo" action="${ctx}/ele/bizSiteBaseinfo/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
+		<sys:message content="${message}"/>
 		<div class="control-group">
 			<label class="control-label">区县：</label>
 			<div class="controls">
-				<form:input path="sidistrict" htmlEscape="false" maxlength="6" class="input-xlarge required"/>
+				<form:select path="sidistrict" htmlEscape="false" maxlength="6" class="input-xlarge required">
+					<form:option value="" label="请选择"/>
+					<form:options items="${fns:getDictList('dict_district')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -50,7 +53,7 @@
 		<div class="control-group">
 			<label class="control-label">站址名称：</label>
 			<div class="controls">
-				<form:input path="sisitename" htmlEscape="false" maxlength="30" class="input-xlarge required"/>
+				<form:input path="sisitename" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -64,7 +67,10 @@
 		<div class="control-group">
 			<label class="control-label">机房类型：</label>
 			<div class="controls">
-				<form:input path="siroomstyle" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<form:select path="siroomstyle" htmlEscape="false" maxlength="20" class="input-xlarge required">
+					<form:option value="" label="请选择"/>
+					<form:options items="${fns:getDictList('dict_roomstyle')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -96,6 +102,12 @@
 				<input name="sicuq" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${bizSiteBaseinfo.sicuq}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">备注：</label>
+			<div class="controls">
+				<form:input path="siremarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

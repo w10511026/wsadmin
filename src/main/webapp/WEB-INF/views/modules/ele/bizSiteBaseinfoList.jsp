@@ -53,7 +53,10 @@
 				<form:input path="sisitenum" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>
 			<li><label>站址名称：</label>
-				<form:input path="sisitename" htmlEscape="false" maxlength="30" class="input-medium"/>
+				<form:input path="sisitename" htmlEscape="false" maxlength="50" class="input-medium"/>
+			</li>
+			<li><label>备注：</label>
+				<form:input path="siremarks" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
 			<li class="btns">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
