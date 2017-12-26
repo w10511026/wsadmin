@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 转供回款信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	
@@ -57,8 +57,8 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 		super(id);
 	}
 
-	@Length(min=1, max=15, message="用电户号长度必须介于 1 和 15 之间")
-	@ExcelField(title="用电户号", align=2, sort=59)
+	@Length(min=1, max=25, message="用电户号长度必须介于 1 和 25 之间")
+	@ExcelField(title="用电户号", align=2, sort=61)
 	public String getTcaccnum() {
 		return tcaccnum;
 	}
@@ -68,7 +68,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="运营商长度必须介于 1 和 20 之间")
-	@ExcelField(title="运营商", align=2, sort=60)
+	@ExcelField(title="运营商", align=2, sort=62)
 	public String getTcoperator() {
 		return tcoperator;
 	}
@@ -78,7 +78,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站点编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站点编码", align=2, sort=61)
+	@ExcelField(title="站点编码", align=2, sort=63)
 	public String getTcsitenum() {
 		return tcsitenum;
 	}
@@ -89,7 +89,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="缴费日期不能为空")
-	@ExcelField(title="缴费日期", align=2, sort=62)
+	@ExcelField(title="缴费日期", align=2, sort=64)
 	public Date getTcpaydate() {
 		return tcpaydate;
 	}
@@ -100,7 +100,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="回款日期不能为空")
-	@ExcelField(title="回款日期", align=2, sort=63)
+	@ExcelField(title="回款日期", align=2, sort=65)
 	public Date getTcrecdate() {
 		return tcrecdate;
 	}
@@ -111,7 +111,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="上期日期不能为空")
-	@ExcelField(title="上期日期", align=2, sort=64)
+	@ExcelField(title="上期日期", align=2, sort=66)
 	public Date getTcpredate() {
 		return tcpredate;
 	}
@@ -122,7 +122,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="本期日期不能为空")
-	@ExcelField(title="本期日期", align=2, sort=65)
+	@ExcelField(title="本期日期", align=2, sort=67)
 	public Date getTccurdate() {
 		return tccurdate;
 	}
@@ -132,7 +132,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="起始读数不能为空")
-	@ExcelField(title="起始读数", align=2, sort=66)
+	@ExcelField(title="起始读数", align=2, sort=68)
 	public Double getTcpredisplay() {
 		return tcpredisplay;
 	}
@@ -142,7 +142,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="截止读数不能为空")
-	@ExcelField(title="截止读数", align=2, sort=67)
+	@ExcelField(title="截止读数", align=2, sort=69)
 	public Double getTccurdisplay() {
 		return tccurdisplay;
 	}
@@ -152,7 +152,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="老表起始读数不能为空")
-	@ExcelField(title="老表起始读数", align=2, sort=68)
+	@ExcelField(title="老表起始读数", align=2, sort=70)
 	public Double getTcprestartdisplay() {
 		return tcprestartdisplay;
 	}
@@ -162,7 +162,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="老表截止读数不能为空")
-	@ExcelField(title="老表截止读数", align=2, sort=69)
+	@ExcelField(title="老表截止读数", align=2, sort=71)
 	public Double getTcpreenddisplay() {
 		return tcpreenddisplay;
 	}
@@ -172,7 +172,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="倍率长度必须介于 1 和 20 之间")
-	@ExcelField(title="倍率", align=2, sort=70)
+	@ExcelField(title="倍率", align=2, sort=72)
 	public String getTcrate() {
 		return tcrate;
 	}
@@ -182,7 +182,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="损耗不能为空")
-	@ExcelField(title="损耗", align=2, sort=71)
+	@ExcelField(title="损耗", align=2, sort=73)
 	public Double getTcloss() {
 		return tcloss;
 	}
@@ -191,7 +191,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 		this.tcloss = tcloss;
 	}
 	
-	@ExcelField(title="计费电量", align=2, sort=72)
+	@ExcelField(title="计费电量", align=2, sort=74)
 	public Double getTctotalq() {
 		return tctotalq;
 	}
@@ -200,7 +200,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 		this.tctotalq = tctotalq;
 	}
 	
-	@ExcelField(title="电费单价", align=2, sort=73)
+	@ExcelField(title="电费单价", align=2, sort=75)
 	public Double getTcpriceq() {
 		return tcpriceq;
 	}
@@ -210,7 +210,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="票面金额不能为空")
-	@ExcelField(title="票面金额", align=2, sort=74)
+	@ExcelField(title="票面金额", align=2, sort=76)
 	public Double getTcparc() {
 		return tcparc;
 	}
@@ -220,7 +220,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="票据类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="票据类型", align=2, sort=75)
+	@ExcelField(title="票据类型", align=2, sort=77)
 	public String getTcpartype() {
 		return tcpartype;
 	}
@@ -230,7 +230,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="铁塔开票类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="铁塔开票类型", align=2, sort=76)
+	@ExcelField(title="铁塔开票类型", align=2, sort=78)
 	public String getTcpartypet() {
 		return tcpartypet;
 	}
@@ -240,7 +240,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="税负因子不能为空")
-	@ExcelField(title="税负因子", align=2, sort=77)
+	@ExcelField(title="税负因子", align=2, sort=79)
 	public Double getTctaxfactor() {
 		return tctaxfactor;
 	}
@@ -250,7 +250,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="移动电流不能为空")
-	@ExcelField(title="移动电流", align=2, sort=78)
+	@ExcelField(title="移动电流", align=2, sort=80)
 	public Double getTccmq() {
 		return tccmq;
 	}
@@ -260,7 +260,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="电信电流不能为空")
-	@ExcelField(title="电信电流", align=2, sort=79)
+	@ExcelField(title="电信电流", align=2, sort=81)
 	public Double getTcctq() {
 		return tcctq;
 	}
@@ -269,7 +269,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 		this.tcctq = tcctq;
 	}
 	
-	@ExcelField(title="联通电流", align=2, sort=80)
+	@ExcelField(title="联通电流", align=2, sort=82)
 	public Double getTccuq() {
 		return tccuq;
 	}
@@ -279,7 +279,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="分摊电费总额不能为空")
-	@ExcelField(title="分摊电费总额", align=2, sort=81)
+	@ExcelField(title="分摊电费总额", align=2, sort=83)
 	public Double getTctotalc() {
 		return tctotalc;
 	}
@@ -289,7 +289,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="PUE不能为空")
-	@ExcelField(title="PUE", align=2, sort=82)
+	@ExcelField(title="PUE", align=2, sort=84)
 	public Double getTcpue() {
 		return tcpue;
 	}
@@ -299,7 +299,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="核对金额不能为空")
-	@ExcelField(title="核对金额", align=2, sort=83)
+	@ExcelField(title="核对金额", align=2, sort=85)
 	public Double getTccheck() {
 		return tccheck;
 	}
@@ -309,7 +309,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@NotNull(message="回款金额不能为空")
-	@ExcelField(title="回款金额", align=2, sort=84)
+	@ExcelField(title="回款金额", align=2, sort=86)
 	public Double getTcc() {
 		return tcc;
 	}
@@ -319,7 +319,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=0, max=1, message="本月分摊比例是否发生变动长度必须介于 0 和 1 之间")
-	@ExcelField(title="本月分摊比例是否发生变动", align=2, sort=85)
+	@ExcelField(title="本月分摊比例是否发生变动", align=2, sort=87)
 	public String getTcapportchange() {
 		return tcapportchange;
 	}
@@ -329,7 +329,7 @@ public class BizTransitReceiptinfo extends DataEntity<BizTransitReceiptinfo> {
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=86)
+	@ExcelField(title="备注", align=2, sort=88)
 	public String getTcremarks() {
 		return tcremarks;
 	}

@@ -50,7 +50,7 @@
 				<form:input path="spbilldate" htmlEscape="false" maxlength="20" class="input-medium"/>
 			</li>
 			<li><label>户号：</label>
-				<form:input path="spaccnum" htmlEscape="false" maxlength="20" class="input-medium"/>
+				<form:input path="spaccnum" htmlEscape="false" maxlength="25" class="input-medium"/>
 			</li>
 			<li><label>铁塔起始日期：</label>
 				<input name="spttstartdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"

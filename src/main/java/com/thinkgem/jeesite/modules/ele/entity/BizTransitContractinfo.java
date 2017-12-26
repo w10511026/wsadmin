@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 转供合同信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	
@@ -36,7 +36,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	}
 
 	@Length(min=1, max=20, message="合同编码长度必须介于 1 和 20 之间")
-	@ExcelField(title="合同编码", align=2, sort=105)
+	@ExcelField(title="合同编码", align=2, sort=107)
 	public String getTconsitenum() {
 		return tconsitenum;
 	}
@@ -46,7 +46,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=106)
+	@ExcelField(title="站址编码", align=2, sort=108)
 	public String getTconsitename() {
 		return tconsitename;
 	}
@@ -56,7 +56,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	}
 	
 	@Length(min=1, max=20, message="供电方名称长度必须介于 1 和 20 之间")
-	@ExcelField(title="供电方名称", align=2, sort=107)
+	@ExcelField(title="供电方名称", align=2, sort=109)
 	public String getTconpa() {
 		return tconpa;
 	}
@@ -67,7 +67,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="合同起始日期不能为空")
-	@ExcelField(title="合同起始日期", align=2, sort=108)
+	@ExcelField(title="合同起始日期", align=2, sort=110)
 	public Date getTconstartdate() {
 		return tconstartdate;
 	}
@@ -78,7 +78,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="合同截止日期不能为空")
-	@ExcelField(title="合同截止日期", align=2, sort=109)
+	@ExcelField(title="合同截止日期", align=2, sort=111)
 	public Date getTconenddate() {
 		return tconenddate;
 	}
@@ -88,7 +88,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	}
 	
 	@NotNull(message="合同单价不能为空")
-	@ExcelField(title="合同单价", align=2, sort=110)
+	@ExcelField(title="合同单价", align=2, sort=112)
 	public Double getTconprice() {
 		return tconprice;
 	}
@@ -98,7 +98,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	}
 	
 	@Length(min=1, max=20, message="票据类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="票据类型", align=2, sort=111)
+	@ExcelField(title="票据类型", align=2, sort=113)
 	public String getTcontype() {
 		return tcontype;
 	}
@@ -108,7 +108,7 @@ public class BizTransitContractinfo extends DataEntity<BizTransitContractinfo> {
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=112)
+	@ExcelField(title="备注", align=2, sort=114)
 	public String getTcremark() {
 		return tcremark;
 	}

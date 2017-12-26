@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 电流分摊信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	
@@ -33,7 +33,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	}
 
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=250)
+	@ExcelField(title="站址编码", align=2, sort=222)
 	public String getRositenum() {
 		return rositenum;
 	}
@@ -43,7 +43,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	}
 	
 	@NotNull(message="移动电流不能为空")
-	@ExcelField(title="移动电流", align=2, sort=251)
+	@ExcelField(title="移动电流", align=2, sort=223)
 	public Double getRocmq() {
 		return rocmq;
 	}
@@ -53,7 +53,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	}
 	
 	@NotNull(message="电信电流不能为空")
-	@ExcelField(title="电信电流", align=2, sort=252)
+	@ExcelField(title="电信电流", align=2, sort=224)
 	public Double getRoctq() {
 		return roctq;
 	}
@@ -63,7 +63,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	}
 	
 	@NotNull(message="联通电流不能为空")
-	@ExcelField(title="联通电流", align=2, sort=253)
+	@ExcelField(title="联通电流", align=2, sort=225)
 	public Double getRocuq() {
 		return rocuq;
 	}
@@ -73,7 +73,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	}
 	
 	@Length(min=0, max=30, message="宿主站站址编码长度必须介于 0 和 30 之间")
-	@ExcelField(title="宿主站站址编码", align=2, sort=254)
+	@ExcelField(title="宿主站站址编码", align=2, sort=226)
 	public String getRohistnum() {
 		return rohistnum;
 	}
@@ -84,7 +84,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="更新日期不能为空")
-	@ExcelField(title="更新日期", align=2, sort=255)
+	@ExcelField(title="更新日期", align=2, sort=227)
 	public Date getRoupdatedate() {
 		return roupdatedate;
 	}
@@ -94,7 +94,7 @@ public class BizElectricShareinfo extends DataEntity<BizElectricShareinfo> {
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=256)
+	@ExcelField(title="备注", align=2, sort=228)
 	public String getRoremarks() {
 		return roremarks;
 	}

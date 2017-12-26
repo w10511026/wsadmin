@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizFsuMonitorinfoService;
 /**
  * FSU监控信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizFsuMonitorinfo")
@@ -128,8 +128,8 @@ public class BizFsuMonitorinfoController extends BaseController {
 	public String exportFile(BizFsuMonitorinfo bizFsuMonitorinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "FSU监控信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizFsuMonitorinfo> page = bizFsuMonitorinfoService.findPage(new Page<BizFsuMonitorinfo>(request, response, -1), bizFsuMonitorinfo);
-			new ExportExcel("FSU监控信息", BizFsuMonitorinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizFsuMonitorinfo> list = bizFsuMonitorinfoService.findList(bizFsuMonitorinfo);
+			new ExportExcel("FSU监控信息", BizFsuMonitorinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出FSU监控信息失败！失败信息："+e.getMessage());

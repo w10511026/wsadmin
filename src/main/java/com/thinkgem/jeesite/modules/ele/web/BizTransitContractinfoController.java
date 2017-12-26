@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitContractinfoService;
 /**
  * 转供合同信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitContractinfo")
@@ -128,8 +128,8 @@ public class BizTransitContractinfoController extends BaseController {
 	public String exportFile(BizTransitContractinfo bizTransitContractinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "转供合同信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizTransitContractinfo> page = bizTransitContractinfoService.findPage(new Page<BizTransitContractinfo>(request, response, -1), bizTransitContractinfo);
-			new ExportExcel("转供合同信息", BizTransitContractinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizTransitContractinfo> list = bizTransitContractinfoService.findList(bizTransitContractinfo);
+			new ExportExcel("转供合同信息", BizTransitContractinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出转供合同信息失败！失败信息："+e.getMessage());

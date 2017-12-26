@@ -128,8 +128,8 @@ public class BizSiteMeterinfoController extends BaseController {
 	public String exportFile(BizSiteMeterinfo bizSiteMeterinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "表站对应信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizSiteMeterinfo> page = bizSiteMeterinfoService.findPage(new Page<BizSiteMeterinfo>(request, response, -1), bizSiteMeterinfo);
-			new ExportExcel("表站对应信息", BizSiteMeterinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizSiteMeterinfo> list = bizSiteMeterinfoService.findList(bizSiteMeterinfo);
+			new ExportExcel("表站对应信息", BizSiteMeterinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出表站对应信息失败！失败信息："+e.getMessage());

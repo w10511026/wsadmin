@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * FSU监控信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizFsuMonitorinfo extends DataEntity<BizFsuMonitorinfo> {
 	
@@ -31,7 +31,7 @@ public class BizFsuMonitorinfo extends DataEntity<BizFsuMonitorinfo> {
 	}
 
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=4)
+	@ExcelField(title="站址编码", align=2, sort=14)
 	public String getFsusitenum() {
 		return fsusitenum;
 	}
@@ -40,7 +40,7 @@ public class BizFsuMonitorinfo extends DataEntity<BizFsuMonitorinfo> {
 		this.fsusitenum = fsusitenum;
 	}
 	
-	@ExcelField(title="监控电流", align=2, sort=5)
+	@ExcelField(title="监控电流", align=2, sort=15)
 	public Double getFsuq() {
 		return fsuq;
 	}
@@ -51,7 +51,7 @@ public class BizFsuMonitorinfo extends DataEntity<BizFsuMonitorinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="采集日期不能为空")
-	@ExcelField(title="采集日期", align=2, sort=6)
+	@ExcelField(title="采集日期", align=2, sort=16)
 	public Date getFsudate() {
 		return fsudate;
 	}

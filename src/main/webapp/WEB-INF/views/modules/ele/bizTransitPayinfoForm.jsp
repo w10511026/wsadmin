@@ -36,7 +36,7 @@
 		<div class="control-group">
 			<label class="control-label">户号：</label>
 			<div class="controls">
-				<form:input path="tpaccnum" htmlEscape="false" maxlength="15" class="input-xlarge required"/>
+				<form:input path="tpaccnum" htmlEscape="false" maxlength="25" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

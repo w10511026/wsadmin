@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.modules.ele.entity.BizTransitPayinfo;
 /**
  * 转供缴费信息DAO接口
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @MyBatisDao
 public interface BizTransitPayinfoDao extends CrudDao<BizTransitPayinfo> {

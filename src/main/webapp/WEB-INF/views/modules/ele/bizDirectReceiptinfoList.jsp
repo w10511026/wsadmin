@@ -47,7 +47,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>用电户号：</label>
-				<form:input path="scaccnum" htmlEscape="false" maxlength="15" class="input-medium"/>
+				<form:input path="scaccnum" htmlEscape="false" maxlength="25" class="input-medium"/>
 			</li>
 			<li><label>运营商：</label>
 				<form:input path="scoperator" htmlEscape="false" maxlength="6" class="input-medium"/>

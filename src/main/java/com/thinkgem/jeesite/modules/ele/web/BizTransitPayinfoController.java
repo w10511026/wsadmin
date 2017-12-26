@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitPayinfoService;
 /**
  * 转供缴费信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitPayinfo")
@@ -128,8 +128,8 @@ public class BizTransitPayinfoController extends BaseController {
 	public String exportFile(BizTransitPayinfo bizTransitPayinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "转供缴费信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizTransitPayinfo> page = bizTransitPayinfoService.findPage(new Page<BizTransitPayinfo>(request, response, -1), bizTransitPayinfo);
-			new ExportExcel("转供缴费信息", BizTransitPayinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizTransitPayinfo> list = bizTransitPayinfoService.findList(bizTransitPayinfo);
+			new ExportExcel("转供缴费信息", BizTransitPayinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出转供缴费信息失败！失败信息："+e.getMessage());

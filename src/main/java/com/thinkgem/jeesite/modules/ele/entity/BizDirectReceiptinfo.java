@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 直供回款信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	
@@ -56,8 +56,8 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 		super(id);
 	}
 
-	@Length(min=1, max=15, message="用电户号长度必须介于 1 和 15 之间")
-	@ExcelField(title="用电户号", align=2, sort=214)
+	@Length(min=1, max=25, message="用电户号长度必须介于 1 和 25 之间")
+	@ExcelField(title="用电户号", align=2, sort=186)
 	public String getScaccnum() {
 		return scaccnum;
 	}
@@ -67,7 +67,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=1, max=6, message="运营商长度必须介于 1 和 6 之间")
-	@ExcelField(title="运营商", align=2, sort=215)
+	@ExcelField(title="运营商", align=2, sort=187)
 	public String getScoperator() {
 		return scoperator;
 	}
@@ -77,7 +77,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=1, max=30, message="站点编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站点编码", align=2, sort=216)
+	@ExcelField(title="站点编码", align=2, sort=188)
 	public String getScsitenum() {
 		return scsitenum;
 	}
@@ -88,7 +88,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="回款日期不能为空")
-	@ExcelField(title="回款日期", align=2, sort=217)
+	@ExcelField(title="回款日期", align=2, sort=189)
 	public Date getSprecdate() {
 		return sprecdate;
 	}
@@ -98,7 +98,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="账期长度必须介于 1 和 20 之间")
-	@ExcelField(title="账期", align=2, sort=218)
+	@ExcelField(title="账期", align=2, sort=190)
 	public String getScbilldate() {
 		return scbilldate;
 	}
@@ -109,7 +109,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="上期日期不能为空")
-	@ExcelField(title="上期日期", align=2, sort=219)
+	@ExcelField(title="上期日期", align=2, sort=191)
 	public Date getScpredate() {
 		return scpredate;
 	}
@@ -120,7 +120,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="本期日期不能为空")
-	@ExcelField(title="本期日期", align=2, sort=220)
+	@ExcelField(title="本期日期", align=2, sort=192)
 	public Date getSccurdate() {
 		return sccurdate;
 	}
@@ -130,7 +130,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="上期示度不能为空")
-	@ExcelField(title="上期示度", align=2, sort=221)
+	@ExcelField(title="上期示度", align=2, sort=193)
 	public Double getScpredisplay() {
 		return scpredisplay;
 	}
@@ -140,7 +140,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="本期示度不能为空")
-	@ExcelField(title="本期示度", align=2, sort=222)
+	@ExcelField(title="本期示度", align=2, sort=194)
 	public Double getSccurdisplay() {
 		return sccurdisplay;
 	}
@@ -150,7 +150,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="老表起始读数不能为空")
-	@ExcelField(title="老表起始读数", align=2, sort=223)
+	@ExcelField(title="老表起始读数", align=2, sort=195)
 	public Double getScprestartdisplay() {
 		return scprestartdisplay;
 	}
@@ -160,7 +160,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="老表截止读数不能为空")
-	@ExcelField(title="老表截止读数", align=2, sort=224)
+	@ExcelField(title="老表截止读数", align=2, sort=196)
 	public Double getScpreenddisplay() {
 		return scpreenddisplay;
 	}
@@ -170,7 +170,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="倍率长度必须介于 1 和 20 之间")
-	@ExcelField(title="倍率", align=2, sort=225)
+	@ExcelField(title="倍率", align=2, sort=197)
 	public String getScrate() {
 		return scrate;
 	}
@@ -180,7 +180,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="损耗不能为空")
-	@ExcelField(title="损耗", align=2, sort=226)
+	@ExcelField(title="损耗", align=2, sort=198)
 	public Double getScloss() {
 		return scloss;
 	}
@@ -189,7 +189,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 		this.scloss = scloss;
 	}
 	
-	@ExcelField(title="计费电量", align=2, sort=227)
+	@ExcelField(title="计费电量", align=2, sort=199)
 	public Double getSctotalq() {
 		return sctotalq;
 	}
@@ -198,7 +198,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 		this.sctotalq = sctotalq;
 	}
 	
-	@ExcelField(title="电费单价", align=2, sort=228)
+	@ExcelField(title="电费单价", align=2, sort=200)
 	public Double getScprice() {
 		return scprice;
 	}
@@ -208,7 +208,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="票面金额不能为空")
-	@ExcelField(title="票面金额", align=2, sort=229)
+	@ExcelField(title="票面金额", align=2, sort=201)
 	public Double getScparc() {
 		return scparc;
 	}
@@ -218,7 +218,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="票据类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="票据类型", align=2, sort=230)
+	@ExcelField(title="票据类型", align=2, sort=202)
 	public String getScpartype() {
 		return scpartype;
 	}
@@ -228,7 +228,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=1, max=20, message="铁塔开票类型长度必须介于 1 和 20 之间")
-	@ExcelField(title="铁塔开票类型", align=2, sort=231)
+	@ExcelField(title="铁塔开票类型", align=2, sort=203)
 	public String getScpartypet() {
 		return scpartypet;
 	}
@@ -238,7 +238,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="移动电流不能为空")
-	@ExcelField(title="移动电流", align=2, sort=232)
+	@ExcelField(title="移动电流", align=2, sort=204)
 	public Double getSccmq() {
 		return sccmq;
 	}
@@ -248,7 +248,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="电信电流不能为空")
-	@ExcelField(title="电信电流", align=2, sort=233)
+	@ExcelField(title="电信电流", align=2, sort=205)
 	public Double getScctq() {
 		return scctq;
 	}
@@ -258,7 +258,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="联通电流不能为空")
-	@ExcelField(title="联通电流", align=2, sort=234)
+	@ExcelField(title="联通电流", align=2, sort=206)
 	public Double getSccuq() {
 		return sccuq;
 	}
@@ -268,7 +268,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@NotNull(message="分摊电费总额不能为空")
-	@ExcelField(title="分摊电费总额", align=2, sort=235)
+	@ExcelField(title="分摊电费总额", align=2, sort=207)
 	public Double getSctotalc() {
 		return sctotalc;
 	}
@@ -277,7 +277,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 		this.sctotalc = sctotalc;
 	}
 	
-	@ExcelField(title="PUE", align=2, sort=236)
+	@ExcelField(title="PUE", align=2, sort=208)
 	public Double getScpue() {
 		return scpue;
 	}
@@ -286,7 +286,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 		this.scpue = scpue;
 	}
 	
-	@ExcelField(title="核对金额", align=2, sort=237)
+	@ExcelField(title="核对金额", align=2, sort=209)
 	public Double getSccheck() {
 		return sccheck;
 	}
@@ -295,7 +295,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 		this.sccheck = sccheck;
 	}
 	
-	@ExcelField(title="回款金额", align=2, sort=238)
+	@ExcelField(title="回款金额", align=2, sort=210)
 	public Double getScc() {
 		return scc;
 	}
@@ -305,7 +305,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=0, max=5, message="本月分摊比例是否发生变动长度必须介于 0 和 5 之间")
-	@ExcelField(title="本月分摊比例是否发生变动", align=2, sort=239)
+	@ExcelField(title="本月分摊比例是否发生变动", align=2, sort=211)
 	public String getScapportchange() {
 		return scapportchange;
 	}
@@ -316,7 +316,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="铁塔起始日期不能为空")
-	@ExcelField(title="铁塔起始日期", align=2, sort=240)
+	@ExcelField(title="铁塔起始日期", align=2, sort=212)
 	public Date getSpttstartdate() {
 		return spttstartdate;
 	}
@@ -327,7 +327,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="铁塔截止日期不能为空")
-	@ExcelField(title="铁塔截止日期", align=2, sort=241)
+	@ExcelField(title="铁塔截止日期", align=2, sort=213)
 	public Date getSpttenddate() {
 		return spttenddate;
 	}
@@ -337,7 +337,7 @@ public class BizDirectReceiptinfo extends DataEntity<BizDirectReceiptinfo> {
 	}
 	
 	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
-	@ExcelField(title="备注", align=2, sort=242)
+	@ExcelField(title="备注", align=2, sort=214)
 	public String getScremarks() {
 		return scremarks;
 	}

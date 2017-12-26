@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitReceiptinfoService;
 /**
  * 转供回款信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitReceiptinfo")
@@ -128,8 +128,8 @@ public class BizTransitReceiptinfoController extends BaseController {
 	public String exportFile(BizTransitReceiptinfo bizTransitReceiptinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "转供回款信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizTransitReceiptinfo> page = bizTransitReceiptinfoService.findPage(new Page<BizTransitReceiptinfo>(request, response, -1), bizTransitReceiptinfo);
-			new ExportExcel("转供回款信息", BizTransitReceiptinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizTransitReceiptinfo> list = bizTransitReceiptinfoService.findList(bizTransitReceiptinfo);
+			new ExportExcel("转供回款信息", BizTransitReceiptinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出转供回款信息失败！失败信息："+e.getMessage());

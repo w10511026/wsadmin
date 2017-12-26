@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizDirectPayinfoService;
 /**
  * 直供缴费信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizDirectPayinfo")
@@ -128,8 +128,8 @@ public class BizDirectPayinfoController extends BaseController {
 	public String exportFile(BizDirectPayinfo bizDirectPayinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "直供缴费信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizDirectPayinfo> page = bizDirectPayinfoService.findPage(new Page<BizDirectPayinfo>(request, response, -1), bizDirectPayinfo);
-			new ExportExcel("直供缴费信息", BizDirectPayinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizDirectPayinfo> list = bizDirectPayinfoService.findList(bizDirectPayinfo);
+			new ExportExcel("直供缴费信息", BizDirectPayinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出直供缴费信息失败！失败信息："+e.getMessage());

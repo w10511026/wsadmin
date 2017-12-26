@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.ele.dao.BizTransitContractinfoDao;
 /**
  * 转供合同信息Service
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Service
 @Transactional(readOnly = true)

@@ -11,7 +11,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 转供抄表信息Entity
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 public class BizTransitCopymeterinfo extends DataEntity<BizTransitCopymeterinfo> {
 	
@@ -33,7 +33,7 @@ public class BizTransitCopymeterinfo extends DataEntity<BizTransitCopymeterinfo>
 	}
 
 	@Length(min=1, max=30, message="站址编码长度必须介于 1 和 30 之间")
-	@ExcelField(title="站址编码", align=2, sort=92)
+	@ExcelField(title="站址编码", align=2, sort=94)
 	public String getTdsitenum() {
 		return tdsitenum;
 	}
@@ -44,7 +44,7 @@ public class BizTransitCopymeterinfo extends DataEntity<BizTransitCopymeterinfo>
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="抄表日期不能为空")
-	@ExcelField(title="抄表日期", align=2, sort=93)
+	@ExcelField(title="抄表日期", align=2, sort=95)
 	public Date getTddate() {
 		return tddate;
 	}
@@ -54,7 +54,7 @@ public class BizTransitCopymeterinfo extends DataEntity<BizTransitCopymeterinfo>
 	}
 	
 	@NotNull(message="抄表读数不能为空")
-	@ExcelField(title="抄表读数", align=2, sort=94)
+	@ExcelField(title="抄表读数", align=2, sort=96)
 	public Double getTddisplay() {
 		return tddisplay;
 	}
@@ -64,7 +64,7 @@ public class BizTransitCopymeterinfo extends DataEntity<BizTransitCopymeterinfo>
 	}
 	
 	@Length(min=0, max=10, message="抄表人长度必须介于 0 和 10 之间")
-	@ExcelField(title="抄表人", align=2, sort=95)
+	@ExcelField(title="抄表人", align=2, sort=97)
 	public String getTdperson() {
 		return tdperson;
 	}
@@ -74,7 +74,7 @@ public class BizTransitCopymeterinfo extends DataEntity<BizTransitCopymeterinfo>
 	}
 	
 	@Length(min=0, max=100, message="抄表读数长度必须介于 0 和 100 之间")
-	@ExcelField(title="抄表读数", align=2, sort=96)
+	@ExcelField(title="抄表读数", align=2, sort=98)
 	public String getTdremark() {
 		return tdremark;
 	}

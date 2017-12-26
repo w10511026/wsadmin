@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
 import com.thinkgem.jeesite.common.utils.DateUtils;
@@ -35,16 +37,16 @@ import com.thinkgem.jeesite.modules.ele.service.BizDirectReceiptinfoService;
 /**
  * 直供回款信息Controller
  * @author ws
- * @version 2017-11-09
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizDirectReceiptinfo")
 public class BizDirectReceiptinfoController extends BaseController {
 
 	@Autowired
-	private BizDirectReceiptinfoService bizDirectReceiptinfoService;
-	@Autowired
 	private BizSiteMeterinfoService bizSiteMeterinfoService;
+	@Autowired
+	private BizDirectReceiptinfoService bizDirectReceiptinfoService;
 	
 	@ModelAttribute
 	public BizDirectReceiptinfo get(@RequestParam(required=false) String id) {
@@ -134,8 +136,8 @@ public class BizDirectReceiptinfoController extends BaseController {
 	public String exportFile(BizDirectReceiptinfo bizDirectReceiptinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "直供回款信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizDirectReceiptinfo> page = bizDirectReceiptinfoService.findPage(new Page<BizDirectReceiptinfo>(request, response, -1), bizDirectReceiptinfo);
-			new ExportExcel("直供回款信息", BizDirectReceiptinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizDirectReceiptinfo> list = bizDirectReceiptinfoService.findList(bizDirectReceiptinfo);
+			new ExportExcel("直供回款信息", BizDirectReceiptinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出直供回款信息失败！失败信息："+e.getMessage());

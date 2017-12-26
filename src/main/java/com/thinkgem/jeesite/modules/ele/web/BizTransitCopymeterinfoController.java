@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizTransitCopymeterinfoService;
 /**
  * 转供抄表信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizTransitCopymeterinfo")
@@ -128,8 +128,8 @@ public class BizTransitCopymeterinfoController extends BaseController {
 	public String exportFile(BizTransitCopymeterinfo bizTransitCopymeterinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "转供抄表信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizTransitCopymeterinfo> page = bizTransitCopymeterinfoService.findPage(new Page<BizTransitCopymeterinfo>(request, response, -1), bizTransitCopymeterinfo);
-			new ExportExcel("转供抄表信息", BizTransitCopymeterinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizTransitCopymeterinfo> list = bizTransitCopymeterinfoService.findList(bizTransitCopymeterinfo);
+			new ExportExcel("转供抄表信息", BizTransitCopymeterinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出转供抄表信息失败！失败信息："+e.getMessage());

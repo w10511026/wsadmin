@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.ele.dao.BizElectricShareinfoDao;
 /**
  * 电流分摊信息Service
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Service
 @Transactional(readOnly = true)

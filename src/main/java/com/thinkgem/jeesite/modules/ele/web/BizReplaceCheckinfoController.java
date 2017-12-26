@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.ele.service.BizReplaceCheckinfoService;
 /**
  * 代维巡检信息Controller
  * @author ws
- * @version 2017-12-25
+ * @version 2017-12-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ele/bizReplaceCheckinfo")
@@ -128,8 +128,8 @@ public class BizReplaceCheckinfoController extends BaseController {
 	public String exportFile(BizReplaceCheckinfo bizReplaceCheckinfo, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "代维巡检信息"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			Page<BizReplaceCheckinfo> page = bizReplaceCheckinfoService.findPage(new Page<BizReplaceCheckinfo>(request, response, -1), bizReplaceCheckinfo);
-			new ExportExcel("代维巡检信息", BizReplaceCheckinfo.class).setDataList(page.getList()).write(response, fileName).dispose();
+			List<BizReplaceCheckinfo> list = bizReplaceCheckinfoService.findList(bizReplaceCheckinfo);
+			new ExportExcel("代维巡检信息", BizReplaceCheckinfo.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出代维巡检信息失败！失败信息："+e.getMessage());

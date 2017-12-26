@@ -47,7 +47,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>户号：</label>
-				<form:input path="tpaccnum" htmlEscape="false" maxlength="15" class="input-medium"/>
+				<form:input path="tpaccnum" htmlEscape="false" maxlength="25" class="input-medium"/>
 			</li>
 			<li><label>缴费日期：</label>
 				<input name="beginTppaydate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
