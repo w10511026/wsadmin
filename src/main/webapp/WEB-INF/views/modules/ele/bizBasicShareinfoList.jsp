@@ -100,7 +100,6 @@
 				<th>一表多站信息</th>
 				<th>偷电搭电信息</th>
 				<th>其他信息</th>
-				<th>更新时间</th>
 				<shiro:hasPermission name="ele:bizBasicShareinfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -121,13 +120,13 @@
 					${bizBasicShareinfo.sisitename}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizBasicShareinfo.sicmq}" pattern="yyyy-MM-dd"/>
+					${bizBasicShareinfo.sicmq}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizBasicShareinfo.sictq}" pattern="yyyy-MM-dd"/>
+					${bizBasicShareinfo.sictq}
 				</td>
 				<td>
-					<fmt:formatDate value="${bizBasicShareinfo.sicuq}" pattern="yyyy-MM-dd"/>
+					${bizBasicShareinfo.sicuq}
 				</td>
 				<td>
 					${bizBasicShareinfo.simaintainstatus}
@@ -191,9 +190,6 @@
 				</td>
 				<td>
 					${bizBasicShareinfo.otherinfo}
-				</td>
-				<td>
-					<fmt:formatDate value="${bizBasicShareinfo.updateDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<shiro:hasPermission name="ele:bizBasicShareinfo:edit"><td>
     				<a href="${ctx}/ele/bizBasicShareinfo/form?id=${bizBasicShareinfo.id}">修改</a>

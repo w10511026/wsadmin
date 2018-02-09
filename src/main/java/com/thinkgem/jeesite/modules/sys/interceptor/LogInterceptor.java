@@ -47,13 +47,11 @@ public class LogInterceptor extends BaseService implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, 
 			Object handler, Exception ex) throws Exception {
-		String title = null;
 		Object updateLog = request.getAttribute("updateLog");
 		if (updateLog != null) {
-			title = (String) updateLog;
+			// 保存日志
+			LogUtils.saveLog(request, handler, ex, (String) updateLog);
 		}
-		// 保存日志
-		LogUtils.saveLog(request, handler, ex, title);
 
 		// 打印JVM信息。
 		if (logger.isDebugEnabled()){

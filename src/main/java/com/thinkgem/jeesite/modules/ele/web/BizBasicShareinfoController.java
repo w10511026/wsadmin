@@ -1,32 +1,33 @@
 package com.thinkgem.jeesite.modules.ele.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
+
+import java.util.List;
 import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
-import com.thinkgem.jeesite.common.config.Global;
-import com.thinkgem.jeesite.common.dto.AjaxMsg;
 import com.thinkgem.jeesite.common.logrecord.LogRecordUtil;
-import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.utils.DateUtils;
-import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
-import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.modules.ele.entity.BizBasicShareinfo;
-import com.thinkgem.jeesite.modules.ele.service.BizBasicShareinfoService;
 import com.thinkgem.jeesite.modules.ele.util.InitImportData;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
-import java.util.List;
+import com.thinkgem.jeesite.common.dto.AjaxMsg;
+import com.thinkgem.jeesite.common.config.Global;
+import com.thinkgem.jeesite.common.persistence.Page;
+import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.ele.entity.BizBasicShareinfo;
+import com.thinkgem.jeesite.modules.ele.service.BizBasicShareinfoService;
 
 /**
  * 基础电流分摊信息Controller
@@ -69,31 +70,31 @@ public class BizBasicShareinfoController extends BaseController {
 
 	@RequiresPermissions("ele:bizBasicShareinfo:edit")
 	@RequestMapping(value = "save")
-	public String save(BizBasicShareinfo bizBasicShareinfo, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-		BizBasicShareinfo oldObj = null;
-		try {
-			if (!beanValidator(model, bizBasicShareinfo)){
-				return form(bizBasicShareinfo, model);
-			}
-			if (!bizBasicShareinfo.getIsNewRecord()) {
-				oldObj = bizBasicShareinfoService.get(bizBasicShareinfo.getId());
-			}
-			bizBasicShareinfoService.save(bizBasicShareinfo);
-			addMessage(redirectAttributes, "保存基础电流分摊信息成功");
-		} catch (Exception ex) {
-			String exceptionMsg = ex.getMessage();
-			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
-				exceptionMsg = "导入失败：数据违反主外键约束！";
-			}
-			addMessage(redirectAttributes, exceptionMsg);
-		}
-		if (!bizBasicShareinfo.getIsNewRecord()) {
-			String result = LogRecordUtil.saveUpdateLog(oldObj, bizBasicShareinfo);
-			request.setAttribute("updateLog", result);
-		}
-		return "redirect:"+Global.getAdminPath()+"/ele/bizBasicShareinfo/?repage";
-	}
-
+    public String save(BizBasicShareinfo bizBasicShareinfo, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        BizBasicShareinfo oldObj = null;
+        try {
+            if (!beanValidator(model, bizBasicShareinfo)){
+                return form(bizBasicShareinfo, model);
+            }
+            if (!bizBasicShareinfo.getIsNewRecord()) {
+                oldObj = bizBasicShareinfoService.get(bizBasicShareinfo.getId());
+            }
+            bizBasicShareinfoService.save(bizBasicShareinfo);
+            addMessage(redirectAttributes, "保存基础电流分摊信息成功");
+        } catch (Exception ex) {
+            String exceptionMsg = ex.getMessage();
+            if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
+                exceptionMsg = "导入失败：数据违反主外键约束！";
+            }
+            addMessage(redirectAttributes, exceptionMsg);
+        }
+        if (!bizBasicShareinfo.getIsNewRecord()) {
+            String result = LogRecordUtil.saveUpdateLog(oldObj, bizBasicShareinfo);
+            request.setAttribute("updateLog", result);
+        }
+        return "redirect:"+Global.getAdminPath()+"/ele/bizBasicShareinfo/?repage";
+    }
+	
 	@RequiresPermissions("ele:bizBasicShareinfo:edit")
 	@RequestMapping(value = "delete")
 	public String delete(BizBasicShareinfo bizBasicShareinfo, RedirectAttributes redirectAttributes) {
@@ -159,38 +160,38 @@ public class BizBasicShareinfoController extends BaseController {
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<BizBasicShareinfo> list = ei.getDataList(BizBasicShareinfo.class);
 			for (BizBasicShareinfo bizBasicShareinfo : list) {
-				try {
-					if (true) {
-						BeanValidators.validateWithException(validator, bizBasicShareinfo);
-						double meterMQ = 0;
-						double meterTQ = 0;
-						double meterUQ = 0;
-						for (BizBasicShareinfo shareinfo : list) {
-							if (shareinfo.getRohistnum().equals(bizBasicShareinfo.getRohistnum())) {
-								meterMQ += shareinfo.getSinglestatmq();
-								meterTQ += shareinfo.getSinglestattq();
-								meterUQ += shareinfo.getSinglestatuq();
-							}
-						}
-						//共表移动
-						bizBasicShareinfo.setSharedmetermq(meterMQ);
-						//共表电信
-						bizBasicShareinfo.setSharedmetertq(meterTQ);
-						//共表联通
-						bizBasicShareinfo.setSharedmeteruq(meterUQ);
-						//单站总电流
+                try {
+                    if (true) {
+                        BeanValidators.validateWithException(validator, bizBasicShareinfo);
+                        double meterMQ = 0;
+                        double meterTQ = 0;
+                        double meterUQ = 0;
+                        for (BizBasicShareinfo shareinfo : list) {
+                            if (shareinfo.getRohistnum().equals(bizBasicShareinfo.getRohistnum())) {
+                                meterMQ += null != shareinfo.getSinglestatmq() ? shareinfo.getSinglestatmq() : 0;
+                                meterTQ += null != shareinfo.getSinglestattq() ? shareinfo.getSinglestattq() : 0;
+                                meterUQ += null != shareinfo.getSinglestatuq() ? shareinfo.getSinglestatuq() : 0;
+                            }
+                        }
+                        //共表移动
+                        bizBasicShareinfo.setSharedmetermq(meterMQ);
+                        //共表电信
+                        bizBasicShareinfo.setSharedmetertq(meterTQ);
+                        //共表联通
+                        bizBasicShareinfo.setSharedmeteruq(meterUQ);
+                        //单站总电流
 						double singleTotal = bizBasicShareinfo.getSinglestatmq() + bizBasicShareinfo.getSinglestattq() + bizBasicShareinfo.getSinglestatuq();
 						bizBasicShareinfo.setSingletotal(singleTotal);
 						//共表总电流
 						double shareTotal = bizBasicShareinfo.getSharedmetermq() + bizBasicShareinfo.getSharedmetertq() + bizBasicShareinfo.getSharedmeteruq();
 						bizBasicShareinfo.setSharedmetertotal(shareTotal);
-						bizBasicShareinfoService.save(bizBasicShareinfo);
-						successNum++;
-					} else {
-						failureMsg.append("<br/>");
-						failureNum++;
-					}
-				} catch (ConstraintViolationException ex) {
+                        bizBasicShareinfoService.save(bizBasicShareinfo);
+                        successNum++;
+                    } else {
+                        failureMsg.append("<br/>");
+                        failureNum++;
+                    }
+                } catch (ConstraintViolationException ex) {
 					failureMsg.append("导入失败：");
 					List<String> messageList = BeanValidators.extractPropertyAndMessageAsList(ex, ": ");
 					for (String message : messageList) {

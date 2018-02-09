@@ -2,8 +2,6 @@ package com.thinkgem.jeesite.modules.ele.entity;
 
 import org.hibernate.validator.constraints.Length;
 import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
@@ -19,9 +17,9 @@ public class BizBasicShareinfo extends DataEntity<BizBasicShareinfo> {
 	private String sipropertyunit;		// 原产权
 	private String sidistrict;		// 区县
 	private String sisitename;		// 基站名称
-	private Date sicmq;		// 移动起租
-	private Date sictq;		// 电信起租
-	private Date sicuq;		// 联通起租
+	private String sicmq;		// 移动起租
+	private String sictq;		// 电信起租
+	private String sicuq;		// 联通起租
 	private String simaintainstatus;		// 维护状态
 	private String siroomstyle;		// 机房类型
 	private String siisretain;		// 是否保留站
@@ -92,33 +90,33 @@ public class BizBasicShareinfo extends DataEntity<BizBasicShareinfo> {
 		this.sisitename = sisitename;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Length(min=0, max=20, message="移动起租长度必须介于 0 和 20 之间")
 	@ExcelField(title="移动起租", align=2, sort=33)
-	public Date getSicmq() {
+	public String getSicmq() {
 		return sicmq;
 	}
 
-	public void setSicmq(Date sicmq) {
+	public void setSicmq(String sicmq) {
 		this.sicmq = sicmq;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Length(min=0, max=20, message="电信起租长度必须介于 0 和 20 之间")
 	@ExcelField(title="电信起租", align=2, sort=34)
-	public Date getSictq() {
+	public String getSictq() {
 		return sictq;
 	}
 
-	public void setSictq(Date sictq) {
+	public void setSictq(String sictq) {
 		this.sictq = sictq;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Length(min=0, max=20, message="联通起租长度必须介于 0 和 20 之间")
 	@ExcelField(title="联通起租", align=2, sort=35)
-	public Date getSicuq() {
+	public String getSicuq() {
 		return sicuq;
 	}
 
-	public void setSicuq(Date sicuq) {
+	public void setSicuq(String sicuq) {
 		this.sicuq = sicuq;
 	}
 	

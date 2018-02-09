@@ -311,7 +311,7 @@ public class ImportExcel {
 						}else if (valType == Long.class){
 							val = Double.valueOf(val.toString()).longValue();
 						}else if (valType == Double.class){
-							val = Double.valueOf(val.toString());
+							val = StringUtils.isNotBlank(val.toString()) ? Double.valueOf(val.toString()) : 0;
 						}else if (valType == Float.class){
 							val = Float.valueOf(val.toString());
 						}else if (valType == Date.class){
