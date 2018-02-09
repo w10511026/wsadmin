@@ -80,14 +80,16 @@ public class LogUtils {
 		@Override
 		public void run() {
 			// 获取日志标题
-			if (StringUtils.isBlank(log.getTitle())){
-				String permission = "";
-				if (handler instanceof HandlerMethod){
-					Method m = ((HandlerMethod)handler).getMethod();
-					RequiresPermissions rp = m.getAnnotation(RequiresPermissions.class);
-					permission = (rp != null ? StringUtils.join(rp.value(), ",") : "");
-				}
+			String permission = "";
+			if (handler instanceof HandlerMethod) {
+				Method m = ((HandlerMethod) handler).getMethod();
+				RequiresPermissions rp = m.getAnnotation(RequiresPermissions.class);
+				permission = (rp != null ? StringUtils.join(rp.value(), ",") : "");
+			}
+			if (StringUtils.isBlank(log.getTitle())) {
 				log.setTitle(getMenuNamePath(log.getRequestUri(), permission));
+			} else {
+				log.setTitle(getMenuNamePath(log.getRequestUri(), permission) + "; ->" + log.getTitle());
 			}
 			// 如果有异常，设置异常信息
 			log.setException(Exceptions.getStackTraceAsString(ex));

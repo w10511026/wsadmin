@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ele.dao.BizBasicShareinfoDao">
+    
+	<sql id="bizBasicShareinfoColumns">
+		a.id AS "id",
+		a.sisitenum AS "sisitenum",
+		a.sipropertyunit AS "sipropertyunit",
+		a.sidistrict AS "sidistrict",
+		a.sisitename AS "sisitename",
+		a.sicmq AS "sicmq",
+		a.sictq AS "sictq",
+		a.sicuq AS "sicuq",
+		a.simaintainstatus AS "simaintainstatus",
+		a.siroomstyle AS "siroomstyle",
+		a.siisretain AS "siisretain",
+		a.supplytype AS "supplytype",
+		a.leadtype AS "leadtype",
+		a.rohistnum AS "rohistnum",
+		a.rohistname AS "rohistname",
+		a.sinum AS "sinum",
+		a.sibilltype AS "sibilltype",
+		a.outcityeleremarks AS "outcityeleremarks",
+		a.singlestatmq AS "singlestatmq",
+		a.singlestattq AS "singlestattq",
+		a.singlestatuq AS "singlestatuq",
+		a.singletotal AS "singletotal",
+		a.sharedmetermq AS "sharedmetermq",
+		a.sharedmetertq AS "sharedmetertq",
+		a.sharedmeteruq AS "sharedmeteruq",
+		a.sharedmetertotal AS "sharedmetertotal",
+		a.singletomanystatinfo AS "singletomanystatinfo",
+		a.stealeleinfo AS "stealeleinfo",
+		a.otherinfo AS "otherinfo",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate"
+	</sql>
+	
+	<sql id="bizBasicShareinfoJoins">
+	</sql>
+    
+	<select id="get" resultType="BizBasicShareinfo">
+		SELECT 
+			<include refid="bizBasicShareinfoColumns"/>
+		FROM biz_basic_shareinfo a
+		<include refid="bizBasicShareinfoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BizBasicShareinfo">
+		SELECT 
+			<include refid="bizBasicShareinfoColumns"/>
+		FROM biz_basic_shareinfo a
+		<include refid="bizBasicShareinfoJoins"/>
+		<where>
+			
+			<if test="sisitenum != null and sisitenum != ''">
+				AND a.sisitenum LIKE 
+					<if test="dbName == 'oracle'">'%'||#{sisitenum}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{sisitenum}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{sisitenum},'%')</if>
+			</if>
+			<if test="sisitename != null and sisitename != ''">
+				AND a.sisitename LIKE 
+					<if test="dbName == 'oracle'">'%'||#{sisitename}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{sisitename}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{sisitename},'%')</if>
+			</if>
+			<if test="rohistnum != null and rohistnum != ''">
+				AND a.rohistnum LIKE 
+					<if test="dbName == 'oracle'">'%'||#{rohistnum}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{rohistnum}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{rohistnum},'%')</if>
+			</if>
+			<if test="rohistname != null and rohistname != ''">
+				AND a.rohistname LIKE 
+					<if test="dbName == 'oracle'">'%'||#{rohistname}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{rohistname}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{rohistname},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BizBasicShareinfo">
+		SELECT 
+			<include refid="bizBasicShareinfoColumns"/>
+		FROM biz_basic_shareinfo a
+		<include refid="bizBasicShareinfoJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO biz_basic_shareinfo(
+			id,
+			sisitenum,
+			sipropertyunit,
+			sidistrict,
+			sisitename,
+			sicmq,
+			sictq,
+			sicuq,
+			simaintainstatus,
+			siroomstyle,
+			siisretain,
+			supplytype,
+			leadtype,
+			rohistnum,
+			rohistname,
+			sinum,
+			sibilltype,
+			outcityeleremarks,
+			singlestatmq,
+			singlestattq,
+			singlestatuq,
+			singletotal,
+			sharedmetermq,
+			sharedmetertq,
+			sharedmeteruq,
+			sharedmetertotal,
+			singletomanystatinfo,
+			stealeleinfo,
+			otherinfo,
+			create_by,
+			create_date,
+			update_by,
+			update_date
+		) VALUES (
+			#{id},
+			#{sisitenum},
+			#{sipropertyunit},
+			#{sidistrict},
+			#{sisitename},
+			#{sicmq},
+			#{sictq},
+			#{sicuq},
+			#{simaintainstatus},
+			#{siroomstyle},
+			#{siisretain},
+			#{supplytype},
+			#{leadtype},
+			#{rohistnum},
+			#{rohistname},
+			#{sinum},
+			#{sibilltype},
+			#{outcityeleremarks},
+			#{singlestatmq},
+			#{singlestattq},
+			#{singlestatuq},
+			#{singletotal},
+			#{sharedmetermq},
+			#{sharedmetertq},
+			#{sharedmeteruq},
+			#{sharedmetertotal},
+			#{singletomanystatinfo},
+			#{stealeleinfo},
+			#{otherinfo},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE biz_basic_shareinfo SET 	
+			sisitenum = #{sisitenum},
+			sipropertyunit = #{sipropertyunit},
+			sidistrict = #{sidistrict},
+			sisitename = #{sisitename},
+			sicmq = #{sicmq},
+			sictq = #{sictq},
+			sicuq = #{sicuq},
+			simaintainstatus = #{simaintainstatus},
+			siroomstyle = #{siroomstyle},
+			siisretain = #{siisretain},
+			supplytype = #{supplytype},
+			leadtype = #{leadtype},
+			rohistnum = #{rohistnum},
+			rohistname = #{rohistname},
+			sinum = #{sinum},
+			sibilltype = #{sibilltype},
+			outcityeleremarks = #{outcityeleremarks},
+			singlestatmq = #{singlestatmq},
+			singlestattq = #{singlestattq},
+			singlestatuq = #{singlestatuq},
+			singletotal = #{singletotal},
+			sharedmetermq = #{sharedmetermq},
+			sharedmetertq = #{sharedmetertq},
+			sharedmeteruq = #{sharedmeteruq},
+			sharedmetertotal = #{sharedmetertotal},
+			singletomanystatinfo = #{singletomanystatinfo},
+			stealeleinfo = #{stealeleinfo},
+			otherinfo = #{otherinfo},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM biz_basic_shareinfo
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
