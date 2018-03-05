@@ -92,6 +92,7 @@ public class BizBasicShareinfoController extends BaseController {
             String result = LogRecordUtil.saveUpdateLog(oldObj, bizBasicShareinfo);
             request.setAttribute("updateLog", result);
         }
+		bizBasicShareinfoService.reCalcData(bizBasicShareinfo);
         return "redirect:"+Global.getAdminPath()+"/ele/bizBasicShareinfo/?repage";
     }
 	
@@ -185,6 +186,8 @@ public class BizBasicShareinfoController extends BaseController {
 						//共表总电流
 						double shareTotal = bizBasicShareinfo.getSharedmetermq() + bizBasicShareinfo.getSharedmetertq() + bizBasicShareinfo.getSharedmeteruq();
 						bizBasicShareinfo.setSharedmetertotal(shareTotal);
+						//一表多站信息
+						bizBasicShareinfo.setSingletomanystatinfo(singleTotal == shareTotal ? "否" : "是");
                         bizBasicShareinfoService.save(bizBasicShareinfo);
                         successNum++;
                     } else {
@@ -230,4 +233,5 @@ public class BizBasicShareinfoController extends BaseController {
 		}
 		return "redirect:"+Global.getAdminPath()+"/ele/bizBasicShareinfo/?repage";
 	}
+
 }

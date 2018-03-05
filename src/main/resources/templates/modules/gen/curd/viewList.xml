@@ -106,7 +106,7 @@
 				<th hidden></th>
 				<#list table.columnList as c>
 					<#if c.isList?? && c.isList == "1">
-				<th>${c.comments}</th>
+				<th style="text-align: center">${c.comments}</th>
 					</#if>
 				</#list>
 				<shiro:hasPermission name="${permissionPrefix}:edit"><th>操作</th></shiro:hasPermission>
@@ -119,7 +119,7 @@
 				<#assign firstListField = true>
 				<#list table.columnList as c>
 					<#if c.isList?? && c.isList == "1">
-				<td><#if firstListField><a href="${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}"></#if>
+				<td style="white-space:nowrap;overflow:hidden;word-break:keep-all;text-align: center"><#if firstListField><a href="${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}"></#if>
 				<#if c.simpleJavaType == "Date">
 					<fmt:formatDate value="${"$"}{${className}.${c.javaFieldId}}" pattern="yyyy-MM-dd"/>
 				<#elseif c.showType == "select" || c.showType == "checkbox" || c.showType == "radiobox">
