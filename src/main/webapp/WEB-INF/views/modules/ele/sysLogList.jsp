@@ -40,7 +40,6 @@
 	</div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/ele/sysLog/">操作日志列表</a></li>
-		<shiro:hasPermission name="ele:sysLog:edit"><li><a href="${ctx}/ele/sysLog/form">操作日志添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="sysLog" action="${ctx}/ele/sysLog/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -88,6 +87,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+<div class="pagination">${page}</div>
 </body>
 </html>
