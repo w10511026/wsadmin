@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ele.dao.BizOperateLogDao">
+    
+	<sql id="bizOperateLogColumns">
+		a.id AS "id",
+		a.username AS "username",
+		a.sisitenum AS "sisitenum",
+		a.sisitename AS "sisitename",
+		a.type AS "type",
+		a.content AS "content",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate"
+	</sql>
+	
+	<sql id="bizOperateLogJoins">
+	</sql>
+    
+	<select id="get" resultType="BizOperateLog">
+		SELECT 
+			<include refid="bizOperateLogColumns"/>
+		FROM biz_operate_log a
+		<include refid="bizOperateLogJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BizOperateLog">
+		SELECT 
+			<include refid="bizOperateLogColumns"/>
+		FROM biz_operate_log a
+		<include refid="bizOperateLogJoins"/>
+		<where>
+			
+			<if test="sisitenum != null and sisitenum != ''">
+				AND a.sisitenum = #{sisitenum}
+			</if>
+			<if test="sisitename != null and sisitename != ''">
+				AND a.sisitename = #{sisitename}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="content != null and content != ''">
+				AND a.content = #{content}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BizOperateLog">
+		SELECT 
+			<include refid="bizOperateLogColumns"/>
+		FROM biz_operate_log a
+		<include refid="bizOperateLogJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO biz_operate_log(
+			id,
+			username,
+			sisitenum,
+			sisitename,
+			type,
+			content,
+			create_by,
+			create_date,
+			update_by,
+			update_date
+		) VALUES (
+			#{id},
+			#{username},
+			#{sisitenum},
+			#{sisitename},
+			#{type},
+			#{content},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE biz_operate_log SET 	
+			username = #{username},
+			sisitenum = #{sisitenum},
+			sisitename = #{sisitename},
+			type = #{type},
+			content = #{content},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM biz_operate_log
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

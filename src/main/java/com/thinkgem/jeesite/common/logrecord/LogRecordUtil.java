@@ -38,7 +38,6 @@ public class LogRecordUtil {
                 result += key + "从" + "'" + list.get(0) + "'" + "修改为" + "'" + list.get(1) + "'！";
             }
         }
-        System.out.println(result);
         return result;
     }
 

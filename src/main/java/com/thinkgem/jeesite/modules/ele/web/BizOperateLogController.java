@@ -25,56 +25,56 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.modules.ele.entity.SysLog;
-import com.thinkgem.jeesite.modules.ele.service.SysLogService;
+import com.thinkgem.jeesite.modules.ele.entity.BizOperateLog;
+import com.thinkgem.jeesite.modules.ele.service.BizOperateLogService;
 
 /**
  * 操作日志Controller
  * @author 操作日志
- * @version 2018-03-05
+ * @version 2018-03-13
  */
 @Controller
-@RequestMapping(value = "${adminPath}/ele/sysLog")
-public class SysLogController extends BaseController {
+@RequestMapping(value = "${adminPath}/ele/bizOperateLog")
+public class BizOperateLogController extends BaseController {
 
 	@Autowired
-	private SysLogService sysLogService;
+	private BizOperateLogService bizOperateLogService;
 	
 	@ModelAttribute
-	public SysLog get(@RequestParam(required=false) String id) {
-		SysLog entity = null;
+	public BizOperateLog get(@RequestParam(required=false) String id) {
+		BizOperateLog entity = null;
 		if (StringUtils.isNotBlank(id)){
-			entity = sysLogService.get(id);
+			entity = bizOperateLogService.get(id);
 		}
 		if (entity == null){
-			entity = new SysLog();
+			entity = new BizOperateLog();
 		}
 		return entity;
 	}
 	
-	@RequiresPermissions("ele:sysLog:view")
+	@RequiresPermissions("ele:bizOperateLog:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(SysLog sysLog, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<SysLog> page = sysLogService.findPage(new Page<SysLog>(request, response), sysLog); 
+	public String list(BizOperateLog bizOperateLog, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<BizOperateLog> page = bizOperateLogService.findPage(new Page<BizOperateLog>(request, response), bizOperateLog); 
 		model.addAttribute("page", page);
-		return "modules/ele/sysLogList";
+		return "modules/ele/bizOperateLogList";
 	}
 
-	@RequiresPermissions("ele:sysLog:view")
+	@RequiresPermissions("ele:bizOperateLog:view")
 	@RequestMapping(value = "form")
-	public String form(SysLog sysLog, Model model) {
-		model.addAttribute("sysLog", sysLog);
-		return "modules/ele/sysLogForm";
+	public String form(BizOperateLog bizOperateLog, Model model) {
+		model.addAttribute("bizOperateLog", bizOperateLog);
+		return "modules/ele/bizOperateLogForm";
 	}
 
-	@RequiresPermissions("ele:sysLog:edit")
+	@RequiresPermissions("ele:bizOperateLog:edit")
 	@RequestMapping(value = "save")
-	public String save(SysLog sysLog, Model model, RedirectAttributes redirectAttributes) {
+	public String save(BizOperateLog bizOperateLog, Model model, RedirectAttributes redirectAttributes) {
 		try {
-			if (!beanValidator(model, sysLog)){
-				return form(sysLog, model);
+			if (!beanValidator(model, bizOperateLog)){
+				return form(bizOperateLog, model);
 			}
-			sysLogService.save(sysLog);
+			bizOperateLogService.save(bizOperateLog);
 			addMessage(redirectAttributes, "保存操作日志成功");
 		} catch (Exception ex) {
 			String exceptionMsg = ex.getMessage();
@@ -83,14 +83,14 @@ public class SysLogController extends BaseController {
 			}
 			addMessage(redirectAttributes, exceptionMsg);
 		}
-		return "redirect:"+Global.getAdminPath()+"/ele/sysLog/?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizOperateLog/?repage";
 	}
 	
-	@RequiresPermissions("ele:sysLog:edit")
+	@RequiresPermissions("ele:bizOperateLog:edit")
 	@RequestMapping(value = "delete")
-	public String delete(SysLog sysLog, RedirectAttributes redirectAttributes) {
+	public String delete(BizOperateLog bizOperateLog, RedirectAttributes redirectAttributes) {
 		try {
-			sysLogService.delete(sysLog);
+			bizOperateLogService.delete(bizOperateLog);
 			addMessage(redirectAttributes, "删除操作日志成功");
 		} catch (Exception ex) {
 			String exceptionMsg = ex.getMessage();
@@ -99,19 +99,19 @@ public class SysLogController extends BaseController {
 			}
 			addMessage(redirectAttributes, exceptionMsg);
 		}
-		return "redirect:"+Global.getAdminPath()+"/ele/sysLog/?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizOperateLog/?repage";
 	}
 
-	@RequiresPermissions("ele:sysLog:edit")
+	@RequiresPermissions("ele:bizOperateLog:edit")
 	@RequestMapping(value = "deletebatch")
 	@ResponseBody
 	public AjaxMsg deleteBatch(@RequestParam("ids[]")List<String> ids) {
 		AjaxMsg ajaxMsg = new AjaxMsg(String.valueOf(HttpStatus.OK), "删除操作日志成功");
 		try {
 			for (String id : ids) {
-				SysLog sysLog = new SysLog();
-				sysLog.setId(id);
-				sysLogService.delete(sysLog);
+				BizOperateLog bizOperateLog = new BizOperateLog();
+				bizOperateLog.setId(id);
+				bizOperateLogService.delete(bizOperateLog);
 			}
 		} catch (Exception ex) {
 			String exceptionMsg = ex.getMessage();
@@ -123,38 +123,38 @@ public class SysLogController extends BaseController {
 		return ajaxMsg;
 	}
 
-	@RequiresPermissions("ele:sysLog:view")
+	@RequiresPermissions("ele:bizOperateLog:view")
 	@RequestMapping(value = "export", method= RequestMethod.POST)
-	public String exportFile(SysLog sysLog, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+	public String exportFile(BizOperateLog bizOperateLog, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "操作日志"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-			List<SysLog> list = sysLogService.findList(sysLog);
-			new ExportExcel("操作日志", SysLog.class).setDataList(list).write(response, fileName).dispose();
+			List<BizOperateLog> list = bizOperateLogService.findList(bizOperateLog);
+			new ExportExcel("操作日志", BizOperateLog.class).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出操作日志失败！失败信息："+e.getMessage());
 		}
-		return "redirect:"+Global.getAdminPath()+"/ele/sysLog/?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizOperateLog/?repage";
 	}
 
-	@RequiresPermissions("ele:sysLog:edit")
+	@RequiresPermissions("ele:bizOperateLog:edit")
 	@RequestMapping(value = "import", method=RequestMethod.POST)
 	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
 		if(Global.isDemoMode()){
 			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:"+Global.getAdminPath()+"/ele/sysLog/?repage";
+			return "redirect:"+Global.getAdminPath()+"/ele/bizOperateLog/?repage";
 		}
 		try {
 			int successNum = 0;
 			int failureNum = 0;
 			StringBuilder failureMsg = new StringBuilder();
 			ImportExcel ei = new ImportExcel(file, 1, 0);
-			List<SysLog> list = ei.getDataList(SysLog.class);
-			for (SysLog sysLog : list) {
+			List<BizOperateLog> list = ei.getDataList(BizOperateLog.class);
+			for (BizOperateLog bizOperateLog : list) {
 				try {
 					if (true) {
-						BeanValidators.validateWithException(validator, sysLog);
-						sysLogService.save(sysLog);
+						BeanValidators.validateWithException(validator, bizOperateLog);
+						bizOperateLogService.save(bizOperateLog);
 						successNum++;
 					} else {
 						failureMsg.append("<br/>");
@@ -172,7 +172,7 @@ public class SysLogController extends BaseController {
 					if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
 						exceptionMsg = "导入数据违反主外键约束！";
 					}
-					failureMsg.append("导入失败：" + InitImportData.getPrimaryValue(sysLog) + "=>" + exceptionMsg +"; ");
+					failureMsg.append("导入失败：" + InitImportData.getPrimaryValue(bizOperateLog) + "=>" + exceptionMsg +"; ");
 				}
 			}
 			if (failureNum>0){
@@ -182,21 +182,21 @@ public class SysLogController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入失败！失败信息："+e.getMessage());
 		}
-		return "redirect:"+Global.getAdminPath()+"/ele/sysLog/?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizOperateLog/?repage";
 	}
 
-	@RequiresPermissions("ele:sysLog:view")
+	@RequiresPermissions("ele:bizOperateLog:view")
 	@RequestMapping(value = "import/template")
 	public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
 			String fileName = "操作日志导入模板.xlsx";
-			List<SysLog> list = Lists.newArrayList();
-			list.add((SysLog) InitImportData.getImportData(new SysLog()));
-			new ExportExcel("操作日志", SysLog.class, 2).setDataList(list).write(response, fileName).dispose();
+			List<BizOperateLog> list = Lists.newArrayList();
+			list.add((BizOperateLog) InitImportData.getImportData(new BizOperateLog()));
+			new ExportExcel("操作日志", BizOperateLog.class, 2).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "操作日志导入模板下载失败！失败信息："+e.getMessage());
 		}
-		return "redirect:"+Global.getAdminPath()+"/ele/sysLog/?repage";
+		return "redirect:"+Global.getAdminPath()+"/ele/bizOperateLog/?repage";
 	}
 }

@@ -9,9 +9,14 @@ import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.beanvalidator.BeanValidators;
 import com.thinkgem.jeesite.common.logrecord.LogRecordUtil;
 import com.thinkgem.jeesite.common.utils.DateUtils;
+import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
+import com.thinkgem.jeesite.modules.ele.entity.BizOperateLog;
+import com.thinkgem.jeesite.modules.ele.enums.OperateTypeEnum;
+import com.thinkgem.jeesite.modules.ele.service.BizOperateLogService;
 import com.thinkgem.jeesite.modules.ele.util.InitImportData;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +45,9 @@ public class BizBasicShareinfoController extends BaseController {
 
 	@Autowired
 	private BizBasicShareinfoService bizBasicShareinfoService;
-	
+	@Autowired
+	BizOperateLogService bizOperateLogService;
+
 	@ModelAttribute
 	public BizBasicShareinfo get(@RequestParam(required=false) String id) {
 		BizBasicShareinfo entity = null;
@@ -88,10 +95,9 @@ public class BizBasicShareinfoController extends BaseController {
             }
             addMessage(redirectAttributes, exceptionMsg);
         }
-        if (!bizBasicShareinfo.getIsNewRecord()) {
-            String result = LogRecordUtil.saveUpdateLog(oldObj, bizBasicShareinfo);
-            request.setAttribute("updateLog", result);
-        }
+		bizOperateLogService.save(new BizOperateLog(true, IdGen.uuid(), UserUtils.getUser().getLoginName(), bizBasicShareinfo.getSisitenum(), bizBasicShareinfo.getSisitename(),
+				bizBasicShareinfo.getIsNewRecord() == true ? OperateTypeEnum.ADD.name : OperateTypeEnum.UPDATE.name,
+				bizBasicShareinfo.getIsNewRecord() == true ? null : LogRecordUtil.saveUpdateLog(oldObj, bizBasicShareinfo)));
 		bizBasicShareinfoService.reCalcData(bizBasicShareinfo);
         return "redirect:"+Global.getAdminPath()+"/ele/bizBasicShareinfo/?repage";
     }
@@ -102,6 +108,7 @@ public class BizBasicShareinfoController extends BaseController {
 		try {
 			bizBasicShareinfoService.delete(bizBasicShareinfo);
 			addMessage(redirectAttributes, "删除基础电流分摊信息成功");
+			bizOperateLogService.save(new BizOperateLog(true, IdGen.uuid(), UserUtils.getUser().getLoginName(), bizBasicShareinfo.getSisitenum(), bizBasicShareinfo.getSisitename(), OperateTypeEnum.DELETE.name,null));
 		} catch (Exception ex) {
 			String exceptionMsg = ex.getMessage();
 			if (exceptionMsg.contains("MySQLIntegrityConstraintViolationException")) {
