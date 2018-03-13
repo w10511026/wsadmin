@@ -39,6 +39,7 @@ public class BizOperateLog extends DataEntity<BizOperateLog> {
 		this.sisitename = sisitename;
 		this.type = type;
 		this.content = content;
+		this.createDate = new Date();
 	}
 
 	@Length(min=0, max=50, message="登录名长度必须介于 0 和 50 之间")
