@@ -63,8 +63,9 @@ public class BizBasicShareinfoController extends BaseController {
 	@RequiresPermissions("ele:bizBasicShareinfo:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(BizBasicShareinfo bizBasicShareinfo, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<BizBasicShareinfo> page = bizBasicShareinfoService.findPage(new Page<BizBasicShareinfo>(request, response), bizBasicShareinfo); 
+		Page<BizBasicShareinfo> page = bizBasicShareinfoService.findPage(new Page<BizBasicShareinfo>(request, response), bizBasicShareinfo);
 		model.addAttribute("page", page);
+		model.addAttribute("sisitenum", bizBasicShareinfo.getSisitenum());
 		return "modules/ele/bizBasicShareinfoList";
 	}
 

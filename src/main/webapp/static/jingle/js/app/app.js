@@ -42,7 +42,8 @@ var App = (function(){
             showPageLoading : true,
             remotePage : {
             	'#index_section': ctx,
-            	'#user_section': ctx + '/sys/user'
+                '#user_section': ctx + '/sys/user',
+            	'#basicshareinfo_section': ctx + '/ele/bizBasicShareinfo'
             }
         });
        

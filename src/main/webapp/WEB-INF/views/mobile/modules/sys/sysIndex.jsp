@@ -10,10 +10,16 @@
     <article class="active" data-scroll="true">
         <div style="padding: 10px 0 20px;">
         <ul class="list inset demo-list">
-            <li data-icon="next" data-selected="selected">
+            <%--<li data-icon="next" data-selected="selected">
                 <span class="icon user"></span>
                 <a href="#user_section?test=abc" data-target="section">
                     <strong>用户管理</strong>
+                </a>
+            </li>--%>
+            <li data-icon="next" data-selected="selected">
+                <span class="icon books"></span>
+                <a href="#basicshareinfo_section?test=abc" data-target="section">
+                    <strong>基础电流分摊</strong>
                 </a>
             </li>
         </ul>
