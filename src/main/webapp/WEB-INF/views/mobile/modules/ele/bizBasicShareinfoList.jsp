@@ -7,7 +7,7 @@
         </nav>
         <h1 class="title">基础电流分摊</h1>
     </header>
-    <article class="active" style="padding: 5px 0 5px; height: auto; overflow-y: scroll; position: absolute; top: 40px; bottom: 0px; width: 100%;font-size: 13px;">
+    <article class="active" style="padding: 5px 0 5px; height: auto; overflow-y: scroll; position: absolute; top: 40px; bottom: 0px; width: 100%;font-size: 13px;-webkit-overflow-scrolling: touch;">
         <div style="padding: 10px 2px 2px 2px;">
             <ul class="ul-form">
                 <form>
