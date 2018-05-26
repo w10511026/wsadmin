@@ -17,7 +17,7 @@
                     <input type="text" class="input-medium search-query" name="sisitename" placeholder="请输入站址名称..."
                            style="width:77%" size="4" value="${sisitename}">&nbsp;
                     <button class="btn">
-                        <a id="searchHrefTop" onclick="searchValue(null)" href="#basicshareinfo_section" data-target="section">
+                        <a id="searchHrefTop" onclick="searchValue(null)" href="javascript:void(0)" data-target="section">
                             <strong>查询</strong>
                         </a>
                     </button>
@@ -45,21 +45,21 @@
                 <li style="float: right;">
                     <span class="icon left">
                         <button class="btn">
-                            <a id="searchHrefHome" onclick="searchValue('home')" href="#basicshareinfo_section" data-target="section">
+                            <a id="searchHrefHome" onclick="searchValue('home')" href="javascript:void(0)" data-target="section">
                                 <strong style="font-size: 14px;font-weight: bold;">首页</strong>
                             </a>
                         </button>
                     </span>
                     <span class="icon left">
                         <button class="btn">
-                            <a id="searchHrefLeft" onclick="searchValue('left')" href="#basicshareinfo_section" data-target="section">
+                            <a id="searchHrefLeft" onclick="searchValue('left')" href="javascript:void(0)" data-target="section">
                                 <strong style="font-size: 14px;font-weight: bold;">上一页</strong>
                             </a>
                         </button>
                     </span>
                     <span class="icon right">
                         <button class="btn">
-                            <a id="searchHrefRight" onclick="searchValue('right')" href="#basicshareinfo_section" data-target="section">
+                            <a id="searchHrefRight" onclick="searchValue('right')" href="javascript:void(0)" data-target="section">
                                 <strong style="font-size: 14px;font-weight: bold;">下一页</strong>
                             </a>
                         </button>
