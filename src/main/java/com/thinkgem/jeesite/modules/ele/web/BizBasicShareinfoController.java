@@ -65,7 +65,7 @@ public class BizBasicShareinfoController extends BaseController {
 	public String list(BizBasicShareinfo bizBasicShareinfo, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<BizBasicShareinfo> page = bizBasicShareinfoService.findPage(new Page<BizBasicShareinfo>(request, response), bizBasicShareinfo);
 		model.addAttribute("page", page);
-		model.addAttribute("sisitenum", bizBasicShareinfo.getSisitenum());
+		model.addAttribute("sisitename", bizBasicShareinfo.getSisitename());
 		return "modules/ele/bizBasicShareinfoList";
 	}
 
