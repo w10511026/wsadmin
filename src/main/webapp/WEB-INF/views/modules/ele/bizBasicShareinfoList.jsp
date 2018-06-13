@@ -12,6 +12,7 @@
 						$("#searchForm").attr("action","${ctx}/ele/bizBasicShareinfo/export");
 						$("#searchForm").submit();
 					}
+                    $("#searchForm").attr("action","${ctx}/ele/bizBasicShareinfo/");
 				},{buttonsFocus:1});
 				top.$('.jbox-body .jbox-icon').css('top','55px');
 			});

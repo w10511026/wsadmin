@@ -18,6 +18,7 @@
 						$("#searchForm").attr("action","${r"${ctx}"}/${urlPrefix}/export");
 						$("#searchForm").submit();
 					}
+					$("#searchForm").attr("action","${r"${ctx}"}/${urlPrefix}/");
 				},{buttonsFocus:1});
 				top.$('.jbox-body .jbox-icon').css('top','55px');
 			});
